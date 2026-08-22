@@ -217,10 +217,11 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 @media (max-width:860px){.person{grid-template-columns:1fr}}
 .role{font-family:"DM Mono",monospace;font-size:.78rem;letter-spacing:.12em;
   text-transform:uppercase;color:var(--mark);margin:.9rem 0 0}
-.faces{list-style:none;display:flex;gap:.55rem;margin:1.5rem 0 0;padding:0}
-/* the source idents are 58px square, so they are rendered at 44 and never scaled
-   up: an upscaled portrait looks worse than a small sharp one */
-.faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block;
+.faces{list-style:none;display:flex;gap:.7rem;margin:1.6rem 0 0;padding:0}
+/* sources are 58px; served at 144 and shown at 72. They are stylised rather than
+   plain photographs, which is why the upscale holds at this size and would not
+   on a normal headshot. */
+.faces img{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;
   background:var(--surface)}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .faces img{filter:invert(1)}
@@ -494,9 +495,9 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             sector. Beyond us, specialists we have worked with for years rather than whoever happens
             to be free. Either way you deal with the people doing the work.</p>
           <ul class="faces">
-            <li><img src="assets/who-geoff.png" alt="Geoffrey Hancock" width="58" height="60"></li>
-            <li><img src="assets/who-henrik.png" alt="Henrik Bach Christensen" width="57" height="58"></li>
-            <li><img src="assets/who-sune.png" alt="Sune Neye" width="57" height="58"></li>
+            <li><img src="assets/who-geoff.png" alt="Geoffrey Hancock" width="144" height="144"></li>
+            <li><img src="assets/who-henrik.png" alt="Henrik Bach Christensen" width="144" height="144"></li>
+            <li><img src="assets/who-sune.png" alt="Sune Neye" width="144" height="144"></li>
           </ul>
         </div>
         <div class="person-copy">
