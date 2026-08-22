@@ -29,6 +29,7 @@
   --line:#CFCFD8;
   --line-strong:#B0B0BC;
   --mark:#4A42E0;
+  --hl:#AFCFF9;          /* light tint of the logo blue, opaque on purpose */
   --on-ink:#EFEFF3;
   --maxw:1240px;
   --pad:clamp(20px,4.5vw,56px);
@@ -44,12 +45,13 @@
     --line:#282833;
     --line-strong:#3C3C4A;
     --mark:#8B86FF;
+    --hl:#1E3B6B;
     --on-ink:#101014;
   }
 }
 :root[data-theme="dark"]{
   --paper:#101014; --surface:#16161C; --sunk:#1C1C24; --ink:#E9E9EF; --ink-2:#A7A7B2;
-  --ink-3:#8A8A95; --line:#282833; --line-strong:#3C3C4A; --mark:#8B86FF; --on-ink:#101014;
+  --ink-3:#8A8A95; --line:#282833; --line-strong:#3C3C4A; --mark:#8B86FF; --hl:#1E3B6B; --on-ink:#101014;
 }
 
 *{box-sizing:border-box}
@@ -82,6 +84,7 @@ h1,h2,h3{
   font-weight:500;line-height:1.05;letter-spacing:-.022em;margin:0;text-wrap:balance;
 }
 h1{font-size:clamp(2.3rem,5.5vw,4.35rem);letter-spacing:-.035em;font-weight:600}
+.case-body h3:has(.hl){line-height:1.32}
 h2{font-size:clamp(1.7rem,3.1vw,2.5rem)}
 h3{font-size:clamp(1.14rem,1.55vw,1.34rem);letter-spacing:-.012em}
 
@@ -153,9 +156,14 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
 .case-body h3 .hl{
   display:inline;
-  background:color-mix(in srgb,var(--mark) 22%,transparent);
+  /* OPAQUE, not a tint. With alpha, the padding boxes of adjacent lines overlap
+     and the shared band renders twice as dark, which is the artefact this had. */
+  background:var(--hl);
+  color:var(--ink);
   box-decoration-break:clone;-webkit-box-decoration-break:clone;
-  padding:.08em .24em;margin-left:-.24em;
+  padding:.1em .26em;margin-left:-.26em;
+  /* keep successive lines from colliding, so the marker reads as separate strokes */
+  line-height:1.32;
 }
 .case-body>p{color:var(--ink-2);margin:0;max-width:52ch}
 .case-meta{margin:1.7rem 0 0}
