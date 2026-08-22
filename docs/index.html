@@ -199,14 +199,12 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.6rem,4.5vw,4rem)}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .studio-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:60ch}
-.reel-tease{display:flex;align-items:center;gap:1rem;margin:1.8rem 0 0;
-  text-decoration:none;max-width:34rem}
-.reel-tease video{width:132px;height:74px;flex:none;object-fit:cover;display:block;
-  border:1px solid var(--line-strong);background:var(--sunk)}
-.reel-tease span{font-size:.95rem;color:var(--mark);text-decoration:underline;
-  text-underline-offset:.22em;text-decoration-thickness:1px}
-.reel-tease:hover span{color:var(--ink)}
-@media (max-width:520px){.reel-tease{flex-wrap:wrap}}
+.xlink{margin:1.6rem 0 0;font-size:.95rem}
+.xlink a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
+/* deliberately smaller than the case plates: it is a glimpse, not a case */
+.studio-reel{display:block;width:100%;max-width:300px;aspect-ratio:16/9;height:auto;
+  object-fit:cover;margin:1.8rem 0 0;border:1px solid var(--line-strong);
+  background:var(--sunk)}
 .facts{margin:2rem 0 0}
 .facts div{border-top:1px solid var(--line);padding-block:.7rem;
   display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;font-size:.93rem}
@@ -461,6 +459,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         <div>
           <p class="eyebrow">The studio</p>
           <h2>A production company, not a freelancer with a template.</h2>
+          <video class="studio-reel" data-src="assets/loop-reel.mp4"
+                 poster="assets/reel-poster.jpg" width="600" height="338"
+                 autoplay muted loop playsinline preload="none"
+                 aria-label="A glimpse of the Wangle showreel"></video>
         </div>
         <div class="studio-copy">
           <p>Wangle is a Scandinavian studio in Copenhagen and Stockholm. We work with global
@@ -470,12 +472,8 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             so localising for a new market or generating a new variant is a small job instead of a
             new project. That is why we can hold quality across hundreds of deliverables and still
             hit the date.</p>
-          <a class="reel-tease" href="https://www.wangle.studio">
-            <video data-src="assets/loop-reel.mp4" poster="assets/reel-poster.jpg" width="640"
-                   height="360" autoplay muted loop playsinline preload="none"
-                   aria-hidden="true"></video>
-            <span>See the animation and moving-image work at wangle.studio</span>
-          </a>
+          <p class="xlink"><a href="https://www.wangle.studio">See the animation and
+            moving-image work at wangle.studio</a></p>
           <dl class="facts">
             <div><dt>Based in</dt><dd>Copenhagen and Stockholm</dd></div>
             <div><dt>Clients</dt><dd>Global brands in retail, pharma, automotive and entertainment</dd></div>
