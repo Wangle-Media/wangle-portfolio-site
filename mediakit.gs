@@ -23,6 +23,29 @@
 var DECK_URL = 'https://drive.google.com/file/d/1FTC7mVZfMODeKxjKnf6MgMEDqv8RBZ0N/view';
 var OWNER = 'geoff@wanglemedia.com';
 
+// The endpoint is unauthenticated by necessity: a static page has to be able to
+// call it. That means anyone can POST, and without a cap someone could use this
+// to mail the deck to thousands of addresses from Geoff's domain, burning the
+// daily send quota and silently breaking the form for real leads.
+// The cap stops the SENDING, never the RECORDING: a genuine request on a busy
+// day is still captured and Geoff can follow it up by hand.
+var MAX_SENDS_PER_DAY = 40;
+
+function sendsToday(sheet) {
+  var last = sheet.getLastRow();
+  if (last < 2) return 0;
+  // only scan the tail; the sheet could get long and this runs on every request
+  var from = Math.max(2, last - 200);
+  var stamps = sheet.getRange(from, 1, last - from + 1, 1).getValues();
+  var today = new Date().toDateString();
+  var n = 0;
+  for (var i = 0; i < stamps.length; i++) {
+    var d = stamps[i][0];
+    if (d && d.toDateString && d.toDateString() === today) n++;
+  }
+  return n;
+}
+
 function doPost(e) {
   var result = { ok: false };
   try {
@@ -39,7 +62,24 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['timestamp', 'email', 'name', 'company']);
     }
+    var overCap = sendsToday(sheet) >= MAX_SENDS_PER_DAY;
     sheet.appendRow([new Date(), email, name, company]);
+
+    if (overCap) {
+      // Record kept, mail withheld. Tell Geoff once so a real spike is visible
+      // rather than looking like the form going quiet.
+      try {
+        MailApp.sendEmail(OWNER, 'Media kit form over its daily cap',
+          'The media kit form has passed ' + MAX_SENDS_PER_DAY + ' requests today ' +
+          'and has stopped sending the deck automatically.
+
+' +
+          'Requests are still being recorded in the sheet. This is either a very ' +
+          'good day or someone hammering the endpoint. Check the sheet before ' +
+          'raising the cap.');
+      } catch (caplessErr) {}
+      return jsonOutput({ ok: true, throttled: true });
+    }
 
     // Send the deck. Isolated so a mail failure never loses the row, which is
     // already saved above, and never breaks the response to the browser.

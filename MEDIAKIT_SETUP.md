@@ -68,6 +68,21 @@ course sheet and sends a mail titled "New course signup". Sharing one endpoint
 would merge two unrelated funnels into a single sheet and make both useless for
 deciding anything.
 
+## The endpoint is public, and that is unavoidable
+
+A static page has to be able to call it, so the URL is visible in view-source
+whether or not this repo is public. Committing it here adds no exposure.
+
+What it does mean is that **anyone can POST to it**. The script mails the deck to
+whatever address is submitted, so without a limit someone could use it to send
+thousands of emails from Geoff's domain, exhaust the daily send quota, and
+silently break the form for real leads.
+
+`MAX_SENDS_PER_DAY` (40) caps the SENDING and never the RECORDING. Past the cap
+a request is still written to the sheet and Geoff gets one alert, so a genuine
+spike looks like a spike rather than like the form going quiet. Raise it after
+checking the sheet, not before.
+
 ## What the script can actually do
 
 Read `mediakit.gs`; it is 100 lines and does exactly three things. It appends a
