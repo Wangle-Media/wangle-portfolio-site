@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wangle Corporate Communications</title>
+<meta name="description" content="Presentation and deck design, conference film and product visualization for global brands. A Scandinavian studio in Copenhagen and Stockholm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Wangle, corporate communications.
+   Visual system: a drafting sheet. Wangle's logo is a CAD line drawing and the pitch is that real
+   production engineering sits behind the imagery, so the page borrows the vernacular of a technical
+   drawing: measured rules, sheet references, mono annotation, cases presented as annotated plates.
+   Palette is derived from the brand mark itself: the gradient W runs violet through blue and cyan
+   into pink, so the accent is that violet deepened to #4A42E0 for contrast (5.82:1 on paper), and
+   the neutrals carry a slight violet bias so they read as chosen rather than inherited. The page
+   stays quiet on purpose: the mark is the one saturated thing on it. */
+
+:root{
+  --paper:#EFEFF3;
+  --surface:#E6E6EC;
+  --sunk:#DCDCE4;
+  --ink:#16161D;
+  --ink-2:#55555F;
+  --ink-3:#6E6E79;
+  --line:#CFCFD8;
+  --line-strong:#B0B0BC;
+  --mark:#4A42E0;
+  --on-ink:#EFEFF3;
+  --maxw:1240px;
+  --rail:clamp(0px,4vw,88px);
+  --pad:clamp(20px,4.5vw,56px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101014;
+    --surface:#16161C;
+    --sunk:#1C1C24;
+    --ink:#E9E9EF;
+    --ink-2:#A7A7B2;
+    --ink-3:#8A8A95;
+    --line:#282833;
+    --line-strong:#3C3C4A;
+    --mark:#8B86FF;
+    --on-ink:#101014;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101014; --surface:#16161C; --sunk:#1C1C24; --ink:#E9E9EF; --ink-2:#A7A7B2;
+  --ink-3:#8A8A95; --line:#282833; --line-strong:#3C3C4A; --mark:#8B86FF; --on-ink:#101014;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight:400;
+  line-height:1.62;
+  font-size:clamp(16px,.5vw + 14.4px,17.5px);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:30;background:var(--ink);color:var(--on-ink);padding:10px 16px}
+
+/* the full-colour gradient mark, embedded as a data URI to keep the page self-contained */
+.wlogo{
+  display:inline-block;width:42px;height:30px;flex:none;
+  background:url("__LOGO_URI__") no-repeat center/contain;
+}
+
+h1,h2,h3{
+  font-family:"Familjen Grotesk","Public Sans",Helvetica,Arial,sans-serif;
+  font-weight:500;line-height:1.05;letter-spacing:-.022em;margin:0;text-wrap:balance;
+}
+h1{font-size:clamp(2.3rem,5.5vw,4.35rem);letter-spacing:-.035em;font-weight:600}
+h2{font-size:clamp(1.7rem,3.1vw,2.5rem)}
+h3{font-size:clamp(1.14rem,1.55vw,1.34rem);letter-spacing:-.012em}
+
+.eyebrow,.ref,.plate-note,.case-client,.svc-tag,.case-meta dt,.facts dt{
+  font-family:"DM Mono","SFMono-Regular",Consolas,monospace;
+  font-variant-numeric:tabular-nums;
+}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 1.5rem;display:flex;align-items:center;gap:.7rem;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--mark);flex:none}
+.lede{font-size:clamp(1.02rem,1.2vw,1.16rem);color:var(--ink-2);max-width:58ch;margin:1.6rem 0 0}
+
+header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:66px;padding-block:.75rem}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;
+  font-family:"Familjen Grotesk",sans-serif;font-weight:600;letter-spacing:-.015em;font-size:1.06rem}
+nav.top{display:flex;align-items:center;gap:clamp(.9rem,2.2vw,2.1rem)}
+nav.top a{text-decoration:none;color:var(--ink-2);font-size:.9rem}
+nav.top a:hover{color:var(--ink)}
+nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark);padding-bottom:1px}
+@media (max-width:760px){nav.top a:not(.cta){display:none}}
+
+.sheet{display:grid;grid-template-columns:var(--rail) minmax(0,1fr)}
+.ref{grid-column:1;font-size:.68rem;letter-spacing:.08em;color:var(--ink-3);
+  padding-top:.4rem;white-space:nowrap;margin:0}
+@media (max-width:900px){.sheet{grid-template-columns:1fr}.ref{display:none}}
+
+.hero{padding-block:clamp(4rem,10vw,8.5rem) clamp(3rem,7vw,6rem)}
+.hero h1{max-width:17ch}
+.hero .lede{margin-top:1.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.5rem}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.94rem;
+  padding:.82em 1.7em;background:var(--ink);color:var(--on-ink);border:1px solid var(--ink);
+  transition:opacity .15s ease}
+.btn:hover{opacity:.86}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--ink);opacity:1}
+
+.clients{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(2rem,3.6vw,2.9rem)}
+.client-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem clamp(1.4rem,3.6vw,3rem)}
+.client-list li{font-family:"Familjen Grotesk",sans-serif;font-weight:500;
+  font-size:clamp(1rem,1.6vw,1.28rem);letter-spacing:-.012em;color:var(--ink-2)}
+
+.work{padding-block:clamp(3.5rem,8vw,6.5rem)}
+.case{padding-block:clamp(2rem,4.5vw,3.4rem);border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0;padding-top:.5rem}
+.case-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  gap:clamp(1.4rem,3.6vw,3.4rem);align-items:start}
+@media (max-width:860px){.case-grid{grid-template-columns:1fr}}
+.plate{position:relative;aspect-ratio:4/3;background:var(--sunk);
+  border:1px solid var(--line-strong);display:grid;place-items:center;overflow:hidden}
+.plate::before{content:"";position:absolute;inset:0;opacity:.55;
+  background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),
+                   linear-gradient(to bottom,var(--line) 1px,transparent 1px);
+  background-size:34px 34px}
+.plate::after{content:"";position:absolute;inset:9px;pointer-events:none;
+  background:
+    linear-gradient(var(--line-strong),var(--line-strong)) left top/13px 1px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) left top/1px 13px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) right top/13px 1px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) right top/1px 13px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) left bottom/13px 1px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) left bottom/1px 13px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) right bottom/13px 1px no-repeat,
+    linear-gradient(var(--line-strong),var(--line-strong)) right bottom/1px 13px no-repeat}
+.plate-note{position:relative;padding:.55em 1.05em;background:var(--paper);
+  border:1px solid var(--line-strong);font-size:.66rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+.case-client{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mark);margin:0 0 .9rem}
+.case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
+.case-body>p{color:var(--ink-2);margin:0;max-width:52ch}
+.case-meta{margin:1.7rem 0 0}
+.case-meta div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;
+  border-top:1px solid var(--line);padding-block:.6rem;font-size:.9rem}
+.case-meta dt{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:0}
+.case-meta dd{margin:0;color:var(--ink-2)}
+@media (max-width:520px){.case-meta div{grid-template-columns:1fr;gap:.15rem}}
+
+.proof{display:flex;flex-wrap:wrap;gap:0;margin:1.7rem 0 0;
+  border-top:1px solid var(--line-strong)}
+.proof div{padding:.95rem 1.6rem .95rem 0;margin-right:1.6rem;
+  border-right:1px solid var(--line)}
+.proof div:last-child{border-right:0;margin-right:0;padding-right:0}
+.proof b{display:block;font-family:"Familjen Grotesk",sans-serif;font-weight:600;
+  font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1;letter-spacing:-.03em;
+  color:var(--mark);font-variant-numeric:tabular-nums}
+.proof span{display:block;font-family:"DM Mono",monospace;font-size:.66rem;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-top:.5rem;
+  max-width:19ch}
+
+.services{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(3.5rem,8vw,6rem)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
+  gap:clamp(1.4rem,3vw,2.6rem);margin-top:2.6rem}
+.svc{border-top:1px solid var(--line-strong);padding-top:1.3rem}
+.svc-tag{display:block;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mark);margin-bottom:.9rem}
+.svc h3{margin-bottom:.65rem}
+.svc p{color:var(--ink-2);margin:0;font-size:.96rem}
+
+.studio{padding-block:clamp(3.5rem,8vw,6rem)}
+.split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.6rem,4.5vw,4rem)}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.studio-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:60ch}
+.xlink{margin:1.6rem 0 0;font-size:.95rem}
+.xlink a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
+.facts{margin:2rem 0 0}
+.facts div{border-top:1px solid var(--line);padding-block:.7rem;
+  display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;font-size:.93rem}
+.facts dt{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:0}
+.facts dd{margin:0;color:var(--ink-2)}
+@media (max-width:520px){.facts div{grid-template-columns:1fr;gap:.15rem}}
+
+.who{padding-block:clamp(3.5rem,8vw,6rem);border-top:1px solid var(--line)}
+.person{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.6rem,4.5vw,4rem)}
+@media (max-width:860px){.person{grid-template-columns:1fr}}
+.role{font-family:"DM Mono",monospace;font-size:.78rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mark);margin:.9rem 0 0}
+.person-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:58ch}
+.lead-person h3,.team h3{font-size:clamp(1.16rem,1.7vw,1.4rem)}
+.lead-person .role{margin:.55rem 0 1rem}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:clamp(1.4rem,3vw,2.4rem);margin-top:2.2rem;padding-top:1.9rem;
+  border-top:1px solid var(--line)}
+.team .role{margin:.5rem 0 .8rem;font-size:.72rem}
+.team p:last-child{margin-bottom:0;font-size:.94rem}
+
+.contact{background:var(--ink);color:var(--on-ink);padding-block:clamp(3.5rem,8vw,6.5rem)}
+.contact .eyebrow{color:color-mix(in srgb,var(--on-ink) 60%,transparent)}
+.contact .ref{color:color-mix(in srgb,var(--on-ink) 45%,transparent)}
+.contact h2{max-width:19ch}
+.contact .lede{color:color-mix(in srgb,var(--on-ink) 80%,transparent)}
+.contact .btn{background:var(--on-ink);color:var(--ink);border-color:var(--on-ink);
+  font-family:"DM Mono",monospace;font-weight:500;
+  font-size:clamp(.98rem,1.5vw,1.14rem);padding:.95em 1.8em;margin-top:2.3rem}
+
+footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
+.foot{display:flex;flex-wrap:wrap;gap:.9rem 2rem;align-items:center;justify-content:space-between}
+.foot-brand{display:flex;align-items:center;gap:.55rem;font-family:"Familjen Grotesk",sans-serif;font-weight:600}
+.foot-brand .wlogo{width:32px;height:23px}
+.foot-note{margin:0;font-size:.85rem;color:var(--ink-3)}
+.foot-note a{color:var(--ink-2)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#main"><i class="wlogo"></i><span>Wangle</span></a>
+    <nav class="top" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">What we do</a>
+      <a href="#studio">Studio</a>
+      <a href="#who">Who</a>
+      <a class="cta" href="#contact">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="wrap sheet">
+      <p class="ref">SH 01</p>
+      <div>
+        <p class="eyebrow">Corporate communications</p>
+        <h1>Some rooms you only get once.</h1>
+        <p class="lede">The conference film that opens the year. The deck the board actually
+          remembers. The product images every market runs on. We make the communications a brand
+          needs to get right first time, then we version them, test them, and keep the ones that
+          work.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">Start a project</a>
+          <a class="btn ghost" href="#work">See the work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clients" aria-label="Selected clients">
+    <div class="wrap sheet">
+      <p class="ref">CL</p>
+      <div>
+        <p class="eyebrow">Selected clients</p>
+        <ul class="client-list">
+          <li>Pandora</li><li>LEGO</li><li>Sony</li><li>Novo Nordisk</li>
+          <li>Kia</li><li>BRIO</li><li>Playmobil</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="work">
+    <div class="wrap sheet">
+      <p class="ref">SH 02</p>
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Three problems, solved on screen.</h2>
+
+        <article class="case">
+          <div class="case-grid">
+            <div class="plate"><span class="plate-note">Plate 02.1</span></div>
+            <div class="case-body">
+              <p class="case-client">Pandora</p>
+              <h3>From a photo library to a content supply chain</h3>
+              <p>Legacy production could not keep pace with a global rebrand. We built a single
+                source of truth: a 3D asset library that turns one modelled product into every
+                image, film and configurator view the business needs, in every market, on demand.</p>
+              <div class="proof">
+                <div><b>25%</b><span>Fewer returns</span></div>
+                <div><b>22%</b><span>Segment growth, rings and earrings</span></div>
+              </div>
+              <dl class="case-meta">
+                <div><dt>Scope</dt><dd>Product visualization, content infrastructure</dd></div>
+                <div><dt>Output</dt><dd>Campaign film, conference film, always-on content</dd></div>
+              </dl>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-grid">
+            <div class="plate"><span class="plate-note">Plate 02.2</span></div>
+            <div class="case-body">
+              <p class="case-client">BRIO</p>
+              <h3>Launching a new world without losing the old one</h3>
+              <p>A Swedish house founded in 1884, pivoting from the wooden railway it is known for
+                to a new modular line at a premium price. The product mechanics needed explaining
+                and the heritage needed protecting, at the same time.</p>
+              <p>We built a standalone character world that teaches the play pattern by telling
+                stories in it. Real-time rendering carried the production, so the launch moved at
+                campaign speed instead of animation speed.</p>
+              <div class="proof">
+                <div><b>87%</b><span>Audience retention, against a 40% category average</span></div>
+                <div><b>2025</b><span>Toy of the Year, Sweden</span></div>
+              </div>
+              <dl class="case-meta">
+                <div><dt>Scope</dt><dd>World and character design, narrative, animation</dd></div>
+                <div><dt>Output</dt><dd>Episodic content, launch and retail assets</dd></div>
+              </dl>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-grid">
+            <div class="plate"><span class="plate-note">Plate 02.3</span></div>
+            <div class="case-body">
+              <p class="case-client">Kia, European EV9 launch</p>
+              <h3>Catching the expensive mistakes while they are still cheap</h3>
+              <p>A pan-European launch shot across a Romanian stage build and Icelandic volcanic
+                terrain. On a production that size, a decision made badly on the day turns into
+                weeks of rework and a slipped launch date. We sat inside both shoots specifically
+                to stop that happening.</p>
+              <div class="proof">
+                <div><b>Zero</b><span>Reshoots or patch plates</span></div>
+                <div><b>On time</b><span>Launched across Europe, October 2023</span></div>
+              </div>
+              <dl class="case-meta">
+                <div><dt>Scope</dt><dd>On-set supervision, both units, principal photography</dd></div>
+                <div><dt>Output</dt><dd>Broadcast, digital, outdoor, print and social</dd></div>
+              </dl>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="wrap sheet">
+      <p class="ref">SH 03</p>
+      <div>
+        <p class="eyebrow">What we do</p>
+        <h2>Four ways to get a message across.</h2>
+        <div class="grid-3">
+          <div class="svc">
+            <span class="svc-tag">Decks</span>
+            <h3>Presentation and deck design</h3>
+            <p>Board decks, investor material, sales enablement and keynote support. Structure
+              first, then the craft that makes it land. Built in your template, or a better one.</p>
+          </div>
+          <div class="svc">
+            <span class="svc-tag">Film</span>
+            <h3>Conference and brand film</h3>
+            <p>Opening films, strategy pieces and launch campaigns for the rooms where the year
+              gets set. Made in house end to end, and built so regional teams can localise them
+              without starting again.</p>
+          </div>
+          <div class="svc">
+            <span class="svc-tag">Product</span>
+            <h3>Product visualization at volume</h3>
+            <p>Photoreal imagery that replaces the photoshoot. Model the product once, then
+              generate every angle, colourway and format your channels need, in every market,
+              without booking a studio again.</p>
+          </div>
+          <div class="svc">
+            <span class="svc-tag">Testing</span>
+            <h3>Versioning and optimisation</h3>
+            <p>Most agencies deliver one execution and call it done. We build assets so variants
+              are cheap, then run enough of them to find out which message actually moves the
+              number you care about, rather than the one that won the internal argument.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="studio" class="studio">
+    <div class="wrap sheet">
+      <p class="ref">SH 04</p>
+      <div class="split">
+        <div>
+          <p class="eyebrow">The studio</p>
+          <h2>A production company, not a freelancer with a template.</h2>
+        </div>
+        <div class="studio-copy">
+          <p>Wangle is a Scandinavian studio in Copenhagen and Stockholm. We work with global
+            brands that need communication assets made properly and repeatedly, not once: the
+            annual conference, the launch, the product library every market pulls from.</p>
+          <p>What makes that work is infrastructure rather than heroics. Assets are built modular,
+            so localising for a new market or generating a new variant is a small job instead of a
+            new project. That is why we can hold quality across hundreds of deliverables and still
+            hit the date.</p>
+          <p class="xlink"><a href="https://www.wangle.studio">See the animation and moving-image
+            work at wangle.studio</a></p>
+          <dl class="facts">
+            <div><dt>Based in</dt><dd>Copenhagen and Stockholm</dd></div>
+            <div><dt>Clients</dt><dd>Global brands in retail, pharma, automotive and entertainment</dd></div>
+            <div><dt>Built for</dt><dd>Volume, localisation and fast versioning</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who" class="who">
+    <div class="wrap sheet">
+      <p class="ref">SH 05</p>
+      <div class="person">
+        <div>
+          <p class="eyebrow">Who you work with</p>
+          <h2>A small group of partners, not an account team.</h2>
+          <p class="lede">Between us we cover production, strategy and the numbers, and we bring in
+            specialists we have worked with for years rather than whoever is free. You deal with the
+            people doing the work.</p>
+        </div>
+        <div class="person-copy">
+          <div class="lead-person">
+            <h3>Geoffrey Hancock</h3>
+            <p class="role">Co-founder</p>
+            <p>Has built Wangle since 2020 into the studio brands call when a message has to land:
+              the conference film, the launch, the product library that every market runs on.</p>
+            <p>Before that, an award-winning career in film and television, which is useful here for
+              one reason above all: it is where you learn to hit a fixed date with a large crew and
+              no excuses. He works on the projects personally rather than handing them to a team you
+              never meet.</p>
+            <p class="xlink"><a href="mailto:geoff@wanglemedia.com">geoff@wanglemedia.com</a></p>
+          </div>
+          <div class="team">
+            <div>
+              <h3>Henrik Bach Christensen</h3>
+              <p class="role">Co-founder, Chief Executive</p>
+              <p>Runs the company and the client relationships, and is usually the first
+                conversation about whether a piece of work is the right one to do.</p>
+            </div>
+            <div>
+              <h3>Sune Neye</h3>
+              <p class="role">Co-founder</p>
+              <p>The analytical side of the studio: forecasting, measurement, and making sure a
+                plan still works once it meets a real budget and a real deadline.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap sheet">
+      <p class="ref">SH 06</p>
+      <div>
+        <p class="eyebrow">Start something</p>
+        <h2>Tell us what the room needs to understand.</h2>
+        <p class="lede">A deck, a film, a library of product visuals, or a conversation about what
+          would actually work. We will tell you straight if we are the wrong studio for it.</p>
+        <a class="btn" href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div class="foot-brand"><i class="wlogo"></i><span>Wangle</span></div>
+    <p class="foot-note">Copenhagen and Stockholm. Animation and moving image at
+      <a href="https://www.wangle.studio">wangle.studio</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
