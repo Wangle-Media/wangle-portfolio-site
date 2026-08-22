@@ -134,7 +134,7 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 @media (max-width:860px){.case-grid{grid-template-columns:1fr}}
 .plate{position:relative;aspect-ratio:4/3;background:var(--sunk);
   border:1px solid var(--line-strong);display:grid;place-items:center;overflow:hidden}
-.plate img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.plate video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;background:var(--sunk)}
 .plate::after{content:"";position:absolute;inset:9px;pointer-events:none;z-index:2;
   background:
     linear-gradient(var(--line-strong),var(--line-strong)) left top/13px 1px no-repeat,
@@ -219,7 +219,9 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 .foot-note{margin:0;font-size:.85rem;color:var(--ink-3)}
 .foot-note a{color:var(--ink-2)}
 
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{transition:none!important}
+}
 </style>
 </head>
 <body>
@@ -277,7 +279,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><img src="assets/case-cmd.jpg" alt="Three metal variants of one Pandora ring design, rendered for the lab-grown diamond launch film" width="1280" height="960" loading="lazy" decoding="async"></div>
+            <div class="plate"><video data-src="assets/loop-presentation.mp4" poster="assets/case-cmd.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A Pandora Capital Markets Day presentation film"></video></div>
             <div class="case-body">
               <p class="case-client">Pandora, Capital Markets Day</p>
               <h3>The film a listed company puts in front of its investors</h3>
@@ -302,7 +304,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><img src="assets/case-supplychain.jpg" alt="One Pandora padlock charm design rendered in silver, rose gold and gold" width="1280" height="960" loading="lazy" decoding="async"></div>
+            <div class="plate"><video data-src="assets/loop-turtle.mp4" poster="assets/case-supplychain.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A Pandora sea turtle charm rendered in 3D"></video></div>
             <div class="case-body">
               <p class="case-client">Pandora</p>
               <h3>From a photo library to a content supply chain</h3>
@@ -327,7 +329,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><img src="assets/case-brio.jpg" alt="A forest scene from the BRIO Flora animated series" width="1280" height="960" loading="lazy" decoding="async"></div>
+            <div class="plate"><video data-src="assets/loop-brio.mp4" poster="assets/case-brio.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A forest scene from the BRIO Flora animated series"></video></div>
             <div class="case-body">
               <p class="case-client">BRIO</p>
               <h3>Launching a new world without losing the old one</h3>
@@ -494,5 +496,29 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
   </div>
 </footer>
 
+<script>
+// Videos are declared preload="none" so they cost nothing on first paint. Attach
+// sources only when a plate approaches the viewport, and skip entirely when the
+// visitor has asked for reduced motion or the connection says save-data.
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var conn = navigator.connection || {};
+  if (reduce || conn.saveData) return;
+  var vids = [].slice.call(document.querySelectorAll('.plate video[data-src]'));
+  if (!vids.length || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var v = e.target;
+      io.unobserve(v);
+      v.src = v.getAttribute('data-src');
+      v.load();
+      var play = v.play();
+      if (play && play.catch) { play.catch(function () {}); }
+    });
+  }, { rootMargin: '200px' });
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>
