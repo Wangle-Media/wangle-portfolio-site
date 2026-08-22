@@ -15,7 +15,7 @@ import sys
 
 import cv2
 
-W, H = 1280, 960  # 2x the ~640x480 the plate renders at
+W, H = 1280, 720  # 16:9, matching both the plate and every source we have
 
 
 def crop(img):

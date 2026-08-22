@@ -15,7 +15,7 @@ import sys
 import cv2
 import numpy as np
 
-PLATE_W, PLATE_H = 640, 480  # 4:3, matching the site's plate aspect
+PLATE_W, PLATE_H = 640, 360  # 16:9
 
 CANDIDATES = [
     ('02.1  Pandora, conference film', None),
