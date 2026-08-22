@@ -14,12 +14,30 @@ dropped, which is the one thing a broken form must not do.
    **Wangle media kit requests**.
 2. **Extensions > Apps Script**. Delete the placeholder `myFunction`.
 3. Paste the whole contents of `mediakit.gs` from this repo.
-4. **Deploy > New deployment**, gear icon > **Web app**.
+4. **Narrow the permissions before deploying.** In the editor, click the gear
+   (Project Settings) and tick **Show "appsscript.json" manifest file**. Open the
+   `appsscript.json` that appears in the file list and replace its contents with
+   the `appsscript.json` from this repo.
+
+   This matters. Without it Apps Script asks for **"see, edit, create and delete
+   all your Google Sheets spreadsheets"**, which is far more than this needs. The
+   manifest pins it to two scopes:
+
+   - `spreadsheets.currentonly` - only the sheet the script is attached to, not
+     every spreadsheet in the account
+   - `script.send_mail` - send mail as you, which is unavoidable: mailing the
+     deck and the notification is the entire job
+
+   The consent screen should then say **"See, edit, create and delete only the
+   specific Google Drive file used with this app"** instead of all of them.
+
+5. **Deploy > New deployment**, gear icon > **Web app**.
    - Execute as: **Me**
    - Who has access: **Anyone**
-   - Deploy, then authorise when Google asks. It will warn that the app is
-     unverified; this is your own script, so continue.
-5. Copy the **Web app URL**. It looks like
+   - Deploy, then authorise. Google will warn the app is unverified and show no
+     privacy policy. That is expected: it is your own personal script, not a
+     third-party app, and the consent screen is simply named after the sheet.
+6. Copy the **Web app URL**. It looks like
    `https://script.google.com/macros/s/AKfy...../exec`.
 
 ## Wire it up
@@ -49,6 +67,18 @@ Do NOT point this at the course waitlist endpoint. That script writes to the
 course sheet and sends a mail titled "New course signup". Sharing one endpoint
 would merge two unrelated funnels into a single sheet and make both useless for
 deciding anything.
+
+## What the script can actually do
+
+Read `mediakit.gs`; it is 100 lines and does exactly three things. It appends a
+row to the attached sheet, mails the requester the deck link, and mails Geoff a
+notification. It reads nothing else, and with the manifest above it *cannot*
+reach another spreadsheet even if it tried.
+
+The permission you grant is still broader than the code uses, which is true of
+any Apps Script. The protection is that you are the only person who can edit the
+script, and the code is versioned in this repo where a change would be visible
+in the diff.
 
 ## Where the deck lives
 
