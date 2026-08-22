@@ -205,10 +205,15 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .studio-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:60ch}
 .xlink{margin:1.6rem 0 0;font-size:.95rem}
 .xlink a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
-/* deliberately smaller than the case plates: it is a glimpse, not a case */
-.studio-reel{display:block;width:100%;max-width:300px;aspect-ratio:16/9;height:auto;
-  object-fit:cover;margin:1.8rem 0 0;border:1px solid var(--line-strong);
-  background:var(--sunk)}
+/* shown at the file's own 480px, so it is never upscaled */
+.studio-reel{display:block;width:100%;max-width:480px;margin:1.8rem 0 0;
+  text-decoration:none}
+.studio-reel video{display:block;width:100%;height:auto;aspect-ratio:16/9;
+  object-fit:cover;border:1px solid var(--line-strong);background:var(--sunk)}
+.studio-reel span{display:block;margin-top:.6rem;font-size:.9rem;color:var(--mark);
+  text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1px}
+.studio-reel:hover video{border-color:var(--mark)}
+.studio-reel:hover span{color:var(--ink)}
 .facts{margin:2rem 0 0}
 .facts div{border-top:1px solid var(--line);padding-block:.7rem;
   display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;font-size:.93rem}
@@ -466,10 +471,13 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         <div>
           <p class="eyebrow">The studio</p>
           <h2>A production company, not a freelancer with a template.</h2>
-          <video class="studio-reel" data-src="assets/loop-reel.mp4"
-                 poster="assets/reel-poster.jpg" width="480" height="270"
-                 autoplay muted loop playsinline preload="none"
-                 aria-label="A glimpse of the Wangle showreel"></video>
+          <a class="studio-reel" href="https://www.wangle.studio"
+             aria-label="Watch the full showreel at wangle.studio">
+            <video data-src="assets/loop-reel.mp4" poster="assets/reel-poster.jpg"
+                   width="480" height="270" autoplay muted loop playsinline
+                   preload="none" aria-hidden="true"></video>
+            <span>Watch the reel at wangle.studio</span>
+          </a>
         </div>
         <div class="studio-copy">
           <p>Wangle is a Scandinavian studio in Copenhagen and Stockholm. We work with global
