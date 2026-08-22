@@ -15,7 +15,7 @@ import sys
 
 import cv2
 
-W, H = 1280, 720  # 16:9, matching both the plate and every source we have
+W, H = 1280, 960  # 4:3 for the two cases that keep it
 
 
 def crop(img):

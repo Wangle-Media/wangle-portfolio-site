@@ -95,7 +95,7 @@ h3{font-size:clamp(1.14rem,1.55vw,1.34rem);letter-spacing:-.012em}
 }
 .eyebrow::before{content:"";width:18px;height:1px;background:var(--mark);flex:none}
 .lede{font-size:clamp(1.02rem,1.2vw,1.16rem);color:var(--ink-2);max-width:58ch;margin:1.6rem 0 0}
-strong{font-weight:600;color:var(--ink)}
+strong{font-weight:700;color:var(--ink)}
 .contact strong{color:var(--on-ink)}
 
 header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
@@ -134,8 +134,9 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .case-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
   gap:clamp(1.4rem,3.6vw,3.4rem);align-items:start}
 @media (max-width:860px){.case-grid{grid-template-columns:1fr}}
-.plate{position:relative;aspect-ratio:16/9;background:var(--sunk);
+.plate{position:relative;aspect-ratio:4/3;background:var(--sunk);
   border:1px solid var(--line-strong);display:grid;place-items:center;overflow:hidden}
+.plate.wide{aspect-ratio:16/9}
 .plate video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;background:var(--sunk)}
 .plate::after{content:"";position:absolute;inset:9px;pointer-events:none;z-index:2;
   background:
@@ -150,6 +151,12 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .case-client{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
   color:var(--mark);margin:0 0 .9rem}
 .case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
+.case-body h3 .hl{
+  display:inline;
+  background:color-mix(in srgb,var(--mark) 22%,transparent);
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  padding:.08em .24em;margin-left:-.24em;
+}
 .case-body>p{color:var(--ink-2);margin:0;max-width:52ch}
 .case-meta{margin:1.7rem 0 0}
 .case-meta div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;
@@ -281,10 +288,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><video data-src="assets/loop-presentation.mp4" poster="assets/case-cmd.jpg" width="1280" height="720" autoplay muted loop playsinline preload="none" aria-label="A slide from a Pandora Capital Markets Day presentation"></video></div>
+            <div class="plate wide"><video data-src="assets/loop-presentation.mp4" poster="assets/case-cmd.jpg" width="1280" height="720" autoplay muted loop playsinline preload="none" aria-label="A slide from a Pandora Capital Markets Day presentation"></video></div>
             <div class="case-body">
               <p class="case-client">Pandora, Capital Markets Day</p>
-              <h3>The presentation a listed company puts in front of its investors</h3>
+              <h3><span class="hl">The presentation a listed company puts in front of its investors</span></h3>
               <p>Capital Markets Day is where a public company sets out its strategy to analysts,
                 press and shareholders. Every slide is read by people paid to be sceptical. We have
                 built Pandora's across multiple years: the narrative, the slide design, the data
@@ -307,10 +314,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><video data-src="assets/loop-turtle.mp4" poster="assets/case-supplychain.jpg" width="1280" height="720" autoplay muted loop playsinline preload="none" aria-label="A Pandora sea turtle charm rendered in 3D"></video></div>
+            <div class="plate"><video data-src="assets/loop-turtle.mp4" poster="assets/case-supplychain.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A Pandora sea turtle charm rendered in 3D"></video></div>
             <div class="case-body">
               <p class="case-client">Pandora</p>
-              <h3>From a photo library to a content supply chain</h3>
+              <h3><span class="hl">From a photo library to a content supply chain</span></h3>
               <p>Legacy production could not keep pace with a global rebrand. We built a single
                 source of truth: a digital twin of the product range, accurate enough that one
                 modelled piece produces every image, film and configurator view the business needs,
@@ -332,10 +339,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"><video data-src="assets/loop-brio.mp4" poster="assets/case-brio.jpg" width="1280" height="720" autoplay muted loop playsinline preload="none" aria-label="A forest scene from the BRIO Flora animated series"></video></div>
+            <div class="plate"><video data-src="assets/loop-brio.mp4" poster="assets/case-brio.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A forest scene from the BRIO Flora animated series"></video></div>
             <div class="case-body">
               <p class="case-client">BRIO</p>
-              <h3>Launching a new world without losing the old one</h3>
+              <h3><span class="hl">Launching a new world without losing the old one</span></h3>
               <p>A Swedish house founded in 1884, pivoting from the wooden railway it is known for
                 to a new modular line at a premium price. The product mechanics needed explaining
                 and the heritage needed protecting, at the same time.</p>
