@@ -108,8 +108,10 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 
 .sheet{display:block}
 
-.hero{padding-block:clamp(4rem,10vw,8.5rem) clamp(3rem,7vw,6rem)}
-.hero h1{max-width:17ch}
+.hero{padding-block:clamp(2.2rem,5vw,4rem) clamp(3rem,7vw,6rem)}
+.hero h1{max-width:20ch}
+.keep{white-space:nowrap}
+@media (max-width:430px){.keep{white-space:normal}}
 .hero .lede{margin-top:1.9rem}
 .actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2.5rem}
 .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.94rem;
@@ -242,7 +244,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
     <div class="wrap sheet">
       <div>
         <p class="eyebrow">Corporate communications</p>
-        <h1>Some rooms you only get once.</h1>
+        <h1>Some rooms <span class="keep">you only get once.</span></h1>
         <p class="lede">The conference film that opens the year. The deck the board actually
           remembers. The product images every market runs on. We make the communications a brand
           needs to get right first time, then we version them, test them, and keep the ones that
