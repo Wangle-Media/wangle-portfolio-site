@@ -126,17 +126,14 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 
 .work{padding-block:clamp(3.5rem,8vw,6.5rem)}
 .case{padding-block:clamp(2rem,4.5vw,3.4rem);border-top:1px solid var(--line)}
-.case:first-of-type{border-top:0;padding-top:.5rem}
+.case:first-of-type{border-top:0;padding-top:clamp(1.5rem,3vw,2.4rem)}
 .case-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
   gap:clamp(1.4rem,3.6vw,3.4rem);align-items:start}
 @media (max-width:860px){.case-grid{grid-template-columns:1fr}}
 .plate{position:relative;aspect-ratio:4/3;background:var(--sunk);
   border:1px solid var(--line-strong);display:grid;place-items:center;overflow:hidden}
-.plate::before{content:"";position:absolute;inset:0;opacity:.55;
-  background-image:linear-gradient(to right,var(--line) 1px,transparent 1px),
-                   linear-gradient(to bottom,var(--line) 1px,transparent 1px);
-  background-size:34px 34px}
-.plate::after{content:"";position:absolute;inset:9px;pointer-events:none;
+.plate img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.plate::after{content:"";position:absolute;inset:9px;pointer-events:none;z-index:2;
   background:
     linear-gradient(var(--line-strong),var(--line-strong)) left top/13px 1px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) left top/1px 13px no-repeat,
@@ -278,17 +275,20 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"></div>
+            <div class="plate"><img src="assets/case-cmd.jpg" alt="Diamond ring rendered for the Pandora lab-grown diamond launch film" width="1280" height="960" loading="lazy" decoding="async"></div>
             <div class="case-body">
               <p class="case-client">Pandora, Capital Markets Day</p>
               <h3>The film a listed company puts in front of its investors</h3>
               <p>Capital Markets Day is where a public company sets out its strategy to analysts and
-                investors. There is no softer audience and no later date. We have made these films
-                for Pandora across multiple years: directed, animated, edited and scored in house,
-                to a day that was fixed long before the work started.</p>
+                investors. We have made these films for Pandora across multiple years: directed,
+                animated, edited and scored in house, to a date that cannot move.</p>
               <p>That includes the launch of their lab-grown diamond line, made while it was still
-                confidential. Being trusted with an unannounced launch is its own kind of
-                credential, and it is the reason the relationship has kept going.</p>
+                confidential. Being trusted that far ahead of an announcement is its own kind
+                of satisfaction, and the relationship has continued since.</p>
+              <div class="proof">
+                <div><b>Multi-year</b><span>Renewed across successive Capital Markets Days</span></div>
+                <div><b>Under embargo</b><span>Trusted with an unannounced product launch</span></div>
+              </div>
               <dl class="case-meta">
                 <div><dt>Scope</dt><dd>Direction, animation, motion graphics, edit, sound</dd></div>
                 <div><dt>Output</dt><dd>Investor presentation film, market cutdowns</dd></div>
@@ -300,16 +300,20 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"></div>
+            <div class="plate"><img src="assets/case-supplychain.jpg" alt="Three metal variants of one ring design, all generated from a single model" width="1280" height="960" loading="lazy" decoding="async"></div>
             <div class="case-body">
               <p class="case-client">Pandora</p>
               <h3>From a photo library to a content supply chain</h3>
               <p>Legacy production could not keep pace with a global rebrand. We built a single
-                source of truth: a 3D asset library that turns one modelled product into every
-                image, film and configurator view the business needs, in every market, on demand.</p>
+                source of truth: a digital twin of the product range, accurate enough that one
+                modelled piece produces every image, film and configurator view the business needs,
+                in every market, on demand.</p>
+              <p>Once a product exists as a digital twin it stops being only a marketing asset. The
+                same model is used to review a design before it is made: proportions, finishes and
+                colourways assessed on screen, and problems found while they are still cheap.</p>
               <div class="proof">
-                <div><b>Multi-year</b><span>Renewed across successive Capital Markets Days</span></div>
-                <div><b>Under embargo</b><span>Trusted with an unannounced product launch</span></div>
+                <div><b>One model</b><span>Every angle, colourway and market</span></div>
+                <div><b>Design to launch</b><span>The same asset validates the product and sells it</span></div>
               </div>
               <dl class="case-meta">
                 <div><dt>Scope</dt><dd>Product visualization, content infrastructure</dd></div>
@@ -321,7 +325,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
         <article class="case">
           <div class="case-grid">
-            <div class="plate"></div>
+            <div class="plate"><img src="assets/case-brio.jpg" alt="A forest scene from the BRIO Flora animated series" width="1280" height="960" loading="lazy" decoding="async"></div>
             <div class="case-body">
               <p class="case-client">BRIO</p>
               <h3>Launching a new world without losing the old one</h3>
@@ -351,7 +355,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
     <div class="wrap sheet">
       <div>
         <p class="eyebrow">What we do</p>
-        <h2>Four ways to get a message across.</h2>
+        <h2>Five ways to get a message across.</h2>
         <div class="grid-3">
           <div class="svc">
             <span class="svc-tag">Decks</span>
@@ -372,6 +376,13 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             <p>Photoreal imagery that replaces the photoshoot. Model the product once, then
               generate every angle, colourway and format your channels need, in every market,
               without booking a studio again.</p>
+          </div>
+          <div class="svc">
+            <span class="svc-tag">Validation</span>
+            <h3>Design validation</h3>
+            <p>See it before you commit to making it. A digital twin accurate enough for marketing
+              is accurate enough to judge a design by, so proportions, materials and colourways get
+              tested on screen while changing them still costs nothing.</p>
           </div>
           <div class="svc">
             <span class="svc-tag">Testing</span>
