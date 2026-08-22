@@ -128,7 +128,11 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .btn.ghost:hover{border-color:var(--ink);opacity:1}
 
 .clients{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(2rem,3.6vw,2.9rem)}
-.client-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem clamp(1.4rem,3.6vw,3rem)}
+.client-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
+  justify-content:space-between;gap:.6rem clamp(1rem,2.4vw,2rem)}
+/* space-between leaves a ragged last row when the names wrap, so on narrow
+   screens fall back to normal flow rather than stranding one name mid-row */
+@media (max-width:700px){.client-list{justify-content:flex-start}}
 .client-list li{font-family:"Familjen Grotesk",sans-serif;font-weight:500;
   font-size:clamp(1rem,1.6vw,1.28rem);letter-spacing:-.012em;color:var(--ink-2)}
 
@@ -463,7 +467,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <p class="eyebrow">The studio</p>
           <h2>A production company, not a freelancer with a template.</h2>
           <video class="studio-reel" data-src="assets/loop-reel.mp4"
-                 poster="assets/reel-poster.jpg" width="600" height="338"
+                 poster="assets/reel-poster.jpg" width="480" height="270"
                  autoplay muted loop playsinline preload="none"
                  aria-label="A glimpse of the Wangle showreel"></video>
         </div>
@@ -518,7 +522,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="team">
             <div>
               <h3>Henrik Bach Christensen</h3>
-              <p class="role">Co-founder, CEO and CTO</p>
+              <p class="role">Co-founder</p>
               <p>A philosopher by training who runs the technology. Less strange a combination than
                 it sounds: most communication problems turn out to be questions about culture before
                 they are questions about tools, and he is unusually good at telling which one is
