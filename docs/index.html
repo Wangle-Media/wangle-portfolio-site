@@ -199,8 +199,14 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.6rem,4.5vw,4rem)}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .studio-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:60ch}
-.xlink{margin:1.6rem 0 0;font-size:.95rem}
-.xlink a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
+.reel-tease{display:flex;align-items:center;gap:1rem;margin:1.8rem 0 0;
+  text-decoration:none;max-width:34rem}
+.reel-tease video{width:132px;height:74px;flex:none;object-fit:cover;display:block;
+  border:1px solid var(--line-strong);background:var(--sunk)}
+.reel-tease span{font-size:.95rem;color:var(--mark);text-decoration:underline;
+  text-underline-offset:.22em;text-decoration-thickness:1px}
+.reel-tease:hover span{color:var(--ink)}
+@media (max-width:520px){.reel-tease{flex-wrap:wrap}}
 .facts{margin:2rem 0 0}
 .facts div{border-top:1px solid var(--line);padding-block:.7rem;
   display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;font-size:.93rem}
@@ -226,6 +232,25 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 .contact .eyebrow{color:color-mix(in srgb,var(--on-ink) 60%,transparent)}
 .contact h2{max-width:19ch}
 .contact .lede{color:color-mix(in srgb,var(--on-ink) 80%,transparent)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kit{margin-top:clamp(2.6rem,5vw,4rem);padding-top:clamp(2rem,4vw,2.8rem);
+  border-top:1px solid color-mix(in srgb,var(--on-ink) 22%,transparent);max-width:44rem}
+.kit h3{color:var(--on-ink);margin-bottom:.6rem}
+.kit>p{color:color-mix(in srgb,var(--on-ink) 78%,transparent);margin:0 0 1.4rem;font-size:.97rem}
+.kit-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.kit-row input{flex:1 1 12rem;min-width:0;font:inherit;font-size:.95rem;
+  padding:.75em .9em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
+  background:transparent;color:var(--on-ink);border-radius:0}
+.kit-row input::placeholder{color:color-mix(in srgb,var(--on-ink) 48%,transparent)}
+.kit-row input:focus{outline:2px solid var(--on-ink);outline-offset:1px}
+.kit-row button{flex:0 0 auto;font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
+  padding:.75em 1.5em;background:var(--on-ink);color:var(--ink);
+  border:1px solid var(--on-ink);border-radius:0}
+.kit-row button:hover{opacity:.88}
+.kit-row button[disabled]{opacity:.55;cursor:default}
+.kit-msg{margin:.9rem 0 0;font-size:.9rem;min-height:1.2em;
+  color:color-mix(in srgb,var(--on-ink) 82%,transparent)}
+
 .contact .btn{background:var(--on-ink);color:var(--ink);border-color:var(--on-ink);
   font-family:"DM Mono",monospace;font-weight:500;
   font-size:clamp(.98rem,1.5vw,1.14rem);padding:.95em 1.8em;margin-top:2.3rem}
@@ -435,8 +460,12 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             so localising for a new market or generating a new variant is a small job instead of a
             new project. That is why we can hold quality across hundreds of deliverables and still
             hit the date.</p>
-          <p class="xlink"><a href="https://www.wangle.studio">See the animation and moving-image
-            work at wangle.studio</a></p>
+          <a class="reel-tease" href="https://www.wangle.studio">
+            <video data-src="assets/loop-reel.mp4" poster="assets/reel-poster.jpg" width="640"
+                   height="360" autoplay muted loop playsinline preload="none"
+                   aria-hidden="true"></video>
+            <span>See the animation and moving-image work at wangle.studio</span>
+          </a>
           <dl class="facts">
             <div><dt>Based in</dt><dd>Copenhagen and Stockholm</dd></div>
             <div><dt>Clients</dt><dd>Global brands in retail, pharma, automotive and entertainment</dd></div>
@@ -502,6 +531,26 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           would actually work. <strong>We will tell you straight if we are the wrong studio for
           it.</strong></p>
         <a class="btn" href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a>
+
+        <div class="kit">
+          <h3>Or start with the media kit</h3>
+          <p>Six pages on what we do, who we do it for, and what it changed. We will send it
+            straight away.</p>
+          <form id="kitform" novalidate>
+            <div class="kit-row">
+              <label class="sr" for="kit-email">Email</label>
+              <input id="kit-email" name="email" type="email" required autocomplete="email"
+                     placeholder="you@company.com">
+              <label class="sr" for="kit-name">Name</label>
+              <input id="kit-name" name="name" type="text" autocomplete="name" placeholder="Name">
+              <label class="sr" for="kit-company">Company</label>
+              <input id="kit-company" name="company" type="text" autocomplete="organization"
+                     placeholder="Company">
+              <button type="submit">Send it</button>
+            </div>
+            <p class="kit-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -516,6 +565,58 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
   </div>
 </footer>
 
+<script>
+// Media kit request. Posts to an Apps Script endpoint that mails the deck to the
+// requester and notifies Geoff. text/plain avoids a CORS preflight, which Apps
+// Script web apps do not answer.
+(function () {
+  var ENDPOINT = ''; // set after deploying mediakit.gs, see MEDIAKIT_SETUP.md
+  var form = document.getElementById('kitform');
+  if (!form) return;
+  var msg = form.querySelector('.kit-msg');
+  var btn = form.querySelector('button');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = form.email.value.trim();
+    if (!email || email.indexOf('@') < 1) {
+      msg.textContent = 'That email does not look right. Mind checking it?';
+      form.email.focus();
+      return;
+    }
+    if (!ENDPOINT) {
+      // Never silently swallow a lead. With no endpoint configured, hand the
+      // visitor a route that still reaches a human.
+      msg.innerHTML = 'Send a blank email to <a href="mailto:geoff@wanglemedia.com' +
+        '?subject=Media%20kit">geoff@wanglemedia.com</a> and the kit comes straight back.';
+      return;
+    }
+    btn.disabled = true;
+    msg.textContent = 'Sending...';
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        email: email,
+        name: form.name.value.trim(),
+        company: form.company.value.trim()
+      })
+    }).then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.ok) {
+          msg.textContent = 'On its way. Check your inbox in a minute.';
+          form.reset();
+        } else {
+          throw new Error((d && d.error) || 'failed');
+        }
+      })
+      .catch(function () {
+        msg.innerHTML = 'That did not go through. Email <a href="mailto:geoff@wanglemedia.com' +
+          '?subject=Media%20kit">geoff@wanglemedia.com</a> and I will send it by hand.';
+      })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
+</script>
 <script>
 // Videos are declared preload="none" so they cost nothing on first paint. Attach
 // sources only when a plate approaches the viewport, and skip entirely when the
