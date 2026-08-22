@@ -71,9 +71,7 @@ function doPost(e) {
       try {
         MailApp.sendEmail(OWNER, 'Media kit form over its daily cap',
           'The media kit form has passed ' + MAX_SENDS_PER_DAY + ' requests today ' +
-          'and has stopped sending the deck automatically.
-
-' +
+          'and has stopped sending the deck automatically. ' +
           'Requests are still being recorded in the sheet. This is either a very ' +
           'good day or someone hammering the endpoint. Check the sheet before ' +
           'raising the cap.');
