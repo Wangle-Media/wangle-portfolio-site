@@ -50,14 +50,18 @@ course sheet and sends a mail titled "New course signup". Sharing one endpoint
 would merge two unrelated funnels into a single sheet and make both useless for
 deciding anything.
 
-## Worth knowing
+## Where the deck lives
 
-- **The deck is served from this public repo** at
-  `https://wangle.media/assets/wangle-media-kit.pdf`. Anyone who guesses that
-  path skips the form. In practice visitors use the form, and the trade was made
-  to get this working the same night rather than waiting on a Drive upload.
-- **A file committed to a public repo is permanent in git history.** If a figure
-  in the deck ever needs retracting, replacing the file does not remove the old
-  one from history. If that matters later, move the PDF to Drive, set
-  `DECK_URL` in `mediakit.gs` to the Drive link, and delete it from here. That is
-  a ten-minute change and it makes the deck revocable.
+**Google Drive**, not this repo. `DECK_URL` in `mediakit.gs` points at it.
+
+That is the right way round. A Drive file can be replaced or its sharing
+revoked; a file committed to a public repo is permanent in git history, so a
+figure that later needed retracting could not be taken back.
+
+The deck was briefly committed here before being moved. It is gone from the
+served site, but that one commit remains in history. If it ever needs to be
+truly unrecoverable, that requires a history rewrite and a force push, which is
+worth doing only if the content becomes genuinely sensitive.
+
+**Check the Drive file is shared as "anyone with the link"**, or requesters will
+be asked to request access, which defeats the whole point of an instant send.

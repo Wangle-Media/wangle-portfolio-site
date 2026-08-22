@@ -18,8 +18,9 @@
  * Deploy: see MEDIAKIT_SETUP.md, same five clicks as the waitlist script.
  */
 
-// The deck lives with the site so the script never needs Drive permissions.
-var DECK_URL = 'https://wangle.media/assets/wangle-media-kit.pdf';
+// Served from Drive, not from this public repo: a Drive file can be replaced or
+// revoked, a file committed to a public repo is permanent in git history.
+var DECK_URL = 'https://drive.google.com/file/d/1FTC7mVZfMODeKxjKnf6MgMEDqv8RBZ0N/view';
 var OWNER = 'geoff@wanglemedia.com';
 
 function doPost(e) {
