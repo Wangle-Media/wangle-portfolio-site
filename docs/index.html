@@ -449,10 +449,14 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
   background:transparent;color:var(--on-ink);border-radius:0}
 .kit-row input::placeholder{color:color-mix(in srgb,var(--on-ink) 48%,transparent)}
 .kit-row input:focus{outline:2px solid var(--on-ink);outline-offset:1px}
+/* the primary action takes the brand violet. Measured on the dark contact
+   ground: 5.96 against the section, 6.28 for the label. Red was the other
+   candidate and loses on both, besides being the only warm colour on the site
+   and reading as a warning on a button. */
 .kit-row button{flex:0 0 auto;font:inherit;font-weight:700;font-size:1.14rem;cursor:pointer;
-  padding:.9em 2.4em;letter-spacing:-.005em;background:var(--on-ink);color:var(--ink);
-  border:1px solid var(--on-ink);border-radius:0}
-.kit-row button:hover{opacity:.88}
+  padding:.9em 2.4em;letter-spacing:-.005em;background:#8B86FF;color:#101014;
+  border:1px solid #8B86FF;border-radius:0;transition:background .15s ease}
+.kit-row button:hover{background:#A29DFF;border-color:#A29DFF}
 .kit-row button[disabled]{opacity:.55;cursor:default}
 #kitform textarea{display:block;width:100%;margin-top:.6rem;font:inherit;font-size:1rem;
   padding:.85em 1em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
