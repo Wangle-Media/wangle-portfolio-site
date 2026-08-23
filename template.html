@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Poppins:wght@600&family=Public+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* Wangle, corporate communications.
    Visual system: a drafting sheet. Wangle's logo is a CAD line drawing and the pitch is that real
@@ -30,6 +30,9 @@
   --line-strong:#B0B0BC;
   --mark:#4A42E0;
   --hl:#AFCFF9;          /* light tint of the logo blue, opaque on purpose */
+  --bar-bg:#14141A;      /* the banner is dark in BOTH themes: the mark needs it */
+  --bar-ink:#EFEFF3;
+  --bar-mut:#9A9AA6;
   --on-ink:#EFEFF3;
   --maxw:1240px;
   --pad:clamp(20px,4.5vw,56px);
@@ -46,12 +49,16 @@
     --line-strong:#3C3C4A;
     --mark:#8B86FF;
     --hl:#1E3B6B;
+    --bar-bg:#191920;
+    --bar-ink:#E9E9EF;
+    --bar-mut:#8A8A95;
     --on-ink:#101014;
   }
 }
 :root[data-theme="dark"]{
   --paper:#101014; --surface:#16161C; --sunk:#1C1C24; --ink:#E9E9EF; --ink-2:#A7A7B2;
   --ink-3:#8A8A95; --line:#282833; --line-strong:#3C3C4A; --mark:#8B86FF; --hl:#1E3B6B; --on-ink:#101014;
+  --bar-bg:#191920; --bar-ink:#E9E9EF; --bar-mut:#8A8A95;
 }
 
 *{box-sizing:border-box}
@@ -102,14 +109,15 @@ strong{font-weight:700;color:var(--ink)}
 .studio-copy strong,.case-body strong{color:var(--ink)}
 .contact strong{color:var(--on-ink)}
 
-header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+header.site{position:sticky;top:0;z-index:20;background:var(--bar-bg);
+  border-bottom:1px solid color-mix(in srgb,var(--bar-ink) 14%,transparent)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:66px;padding-block:.75rem}
 /* One lockup reading WANGLE.MEDIA: the wordmark supplies WANGLE, the type
    supplies .MEDIA. gap is 0 on purpose, a gap here reads as two elements rather
    than one domain. */
-.brand{display:flex;align-items:baseline;gap:0;text-decoration:none;
-  font-family:"Familjen Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
-  letter-spacing:-.01em;color:var(--ink)}
+.brand{display:flex;align-items:baseline;gap:0;text-decoration:none;color:var(--bar-ink);
+  font-family:"Poppins","Familjen Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+  letter-spacing:-.01em}
 .brand .wordmark{
   /* .68em matches the measured cap height of .MEDIA at this size (14px at 20.5px
      type), so the two read as one word rather than as an image beside a word.
@@ -126,15 +134,19 @@ header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bott
   /* baseline alignment puts the image's BOTTOM on the text baseline, and the
      residual drift grows with font-size, so it needs a nudge in em rather than
      px. Measured at 1.5rem: 1.36px low before this, sub-pixel after. */
-  position:relative;top:-.055em;
+  position:relative;top:.03em;
   margin-right:.05em;
 }
-.brand span{letter-spacing:.01em;color:var(--ink-2);font-weight:500}
+/* the wordmark is a heavy geometric sans, so the type beside it is Poppins, not
+   the body face: Familjen Grotesk read as unrelated letterforms next to a logo.
+   The family sits on .brand rather than here so the image's 1cap resolves against
+   the SAME font the text uses. */
+.brand span{letter-spacing:-.005em}
 @media (max-width:420px){.brand{font-size:1.2rem}}
 nav.top{display:flex;align-items:center;gap:clamp(.9rem,2.2vw,2.1rem)}
-nav.top a{text-decoration:none;color:var(--ink-2);font-size:.9rem}
-nav.top a:hover{color:var(--ink)}
-nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark);padding-bottom:1px}
+nav.top a{text-decoration:none;color:var(--bar-mut);font-size:.9rem}
+nav.top a:hover{color:var(--bar-ink)}
+nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86FF;padding-bottom:1px}
 @media (max-width:760px){nav.top a:not(.cta){display:none}}
 
 .sheet{display:block}
@@ -302,7 +314,8 @@ nav.top .cta{font-weight:600;color:var(--ink);border-bottom:2px solid var(--mark
 
 footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 .foot{display:flex;flex-wrap:wrap;gap:.9rem 2rem;align-items:center;justify-content:space-between}
-.foot-brand{display:flex;align-items:center;gap:.55rem;font-family:"Familjen Grotesk",sans-serif;font-weight:600}
+.foot-brand{display:flex;align-items:center;gap:.55rem;
+  font-family:"Poppins","Familjen Grotesk",sans-serif;font-weight:600;letter-spacing:-.005em}
 .foot-brand .wlogo{width:32px;height:23px}
 .foot-note{margin:0;font-size:.85rem;color:var(--ink-3)}
 .foot-note a{color:var(--ink-2)}
@@ -615,7 +628,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
 <footer class="site-footer">
   <div class="wrap foot">
-    <div class="foot-brand"><i class="wlogo"></i><span>Wangle</span></div>
+    <div class="foot-brand"><i class="wlogo"></i><span>Wangle.Media</span></div>
     <p class="foot-note">Copenhagen and Stockholm. Animation and moving image at
       <a href="https://www.wangle.studio">wangle.studio</a>.</p>
   </div>
