@@ -23,7 +23,7 @@ a design agency and it came out of Wangle's own capability deck.
 
 ## Content decisions that are settled, do not re-litigate
 
-- **Clients named:** Pandora, LEGO, Sony, Novo Nordisk, Kia, BRIO, Playmobil. All are already public
+- **Clients named:** Pandora, LEGO, Netflix, Novo Nordisk, Kia, BRIO, Playmobil. All are already public
   on wangle.studio, so naming them is not a new disclosure. Nordisk Film was removed at Geoff's ask.
 - **Founded 2019**, confirmed by Geoff against the register.
 - **No VES mention.** Geoff: buyers here will not recognise it. "Award-winning" only.

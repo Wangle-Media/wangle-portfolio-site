@@ -309,14 +309,38 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
 .btn.ghost:hover{border-color:var(--ink);opacity:1}
 
-.clients{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(2rem,3.6vw,2.9rem)}
-.client-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;
-  justify-content:space-between;gap:.6rem clamp(1rem,2.4vw,2rem)}
-/* space-between leaves a ragged last row when the names wrap, so on narrow
-   screens fall back to normal flow rather than stranding one name mid-row */
-@media (max-width:700px){.client-list{justify-content:flex-start}}
-.client-list li{font-family:"Familjen Grotesk",sans-serif;font-weight:500;
-  font-size:clamp(1rem,1.6vw,1.28rem);letter-spacing:-.012em;color:var(--ink-2)}
+.clients{background:var(--surface);border-block:1px solid var(--line);
+  padding-block:clamp(1.9rem,3.4vw,2.7rem);overflow:hidden}
+.clients .eyebrow{margin:0 0 1.95rem}
+
+/* Full-bleed on purpose: a strip that stops at the text column reads as a
+   list, one that runs off both edges reads as a continuing set. The edge mask
+   stops a logo hard-clipping at the viewport boundary. */
+.marquee{position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{--mqgap:clamp(3rem,6vw,5.5rem);
+  display:flex;align-items:center;gap:var(--mqgap);
+  width:max-content;will-change:transform}
+/* A real box, not display:contents: the loop period is measured from this
+   element's width, and a contents box has no width to measure. */
+.mq-set{display:flex;align-items:center;gap:var(--mqgap);flex:none}
+.marquee img{display:block;flex:none;opacity:.58;filter:grayscale(1);
+  transition:opacity .25s ease}
+.marquee:hover img{opacity:.72}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .marquee img{filter:grayscale(1) invert(1);opacity:.66}
+  :root:not([data-theme="light"]) .marquee:hover img{opacity:.82}
+}
+:root[data-theme="dark"] .marquee img{filter:grayscale(1) invert(1);opacity:.66}
+:root[data-theme="dark"] .marquee:hover img{opacity:.82}
+
+/* No JS, or reduced motion: a plain centred wrapped row, no transform, no mask. */
+.marquee.static{-webkit-mask-image:none;mask-image:none}
+.marquee.static .marquee-track{width:auto;transform:none!important;justify-content:center}
+.marquee.static .mq-set{flex-wrap:wrap;justify-content:center;
+  gap:1.4rem clamp(2rem,4.5vw,4rem)}
+.marquee.static .mq-set ~ .mq-set{display:none}
 
 .work{padding-block:clamp(3.5rem,8vw,6.5rem)}
 .case{padding-block:clamp(2rem,4.5vw,3.4rem);border-top:1px solid var(--line)}
@@ -339,7 +363,7 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/13px 1px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/1px 13px no-repeat}
 .case-client{font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ink-2);margin:0 0 2.35rem;line-height:1.75}
+  color:var(--ink-2);margin:0 0 3rem;line-height:1.75}
 .case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
 /* The highlight sits on the case labels. Those labels now carry the PROBLEM, so
    they are the line delivering on "three problems, solved on screen", and they
@@ -407,16 +431,13 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
   text-transform:uppercase;color:var(--mark);margin:.9rem 0 0}
 .faces{list-style:none;display:flex;gap:.7rem;margin:1.8rem 0 0;padding:0;
   justify-content:space-between;max-width:340px}
-/* sources are 58px; served at 144 and shown at 72. They are stylised rather than
-   plain photographs, which is why the upscale holds at this size and would not
-   on a normal headshot. */
+/* Real photographs, taken from the source deck at 200-460px and downscaled to
+   192 for a 96px slot. They are NOT inverted in dark mode: the placeholders
+   they replaced were monochrome idents, where inverting read as a theme change,
+   but inverting a photograph of a person turns them into a negative. */
 .faces img{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;
   background:var(--surface)}
 @media (max-width:520px){.faces img{width:76px;height:76px}}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .faces img{filter:invert(1)}
-}
-:root[data-theme="dark"] .faces img{filter:invert(1)}
 
 .person-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:58ch}
 .lead-person h3,.team h3{font-size:clamp(1.16rem,1.7vw,1.4rem)}
@@ -532,13 +553,18 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
   </section>
 
   <section class="clients" aria-label="Selected clients">
-    <div class="wrap sheet">
-      <div>
-        <p class="eyebrow">Selected clients</p>
-        <ul class="client-list">
-          <li>Pandora</li><li>LEGO</li><li>Sony</li><li>Novo Nordisk</li>
-          <li>Kia</li><li>BRIO</li><li>Playmobil</li>
-        </ul>
+    <div class="wrap sheet"><div><p class="eyebrow">Selected clients</p></div></div>
+    <div class="marquee static" id="clientMarquee">
+      <div class="marquee-track">
+        <div class="mq-set">
+          <img src="assets/logo-pandora.png" alt="Pandora" width="152" height="31" loading="lazy">
+          <img src="assets/logo-lego.png" alt="LEGO" width="34" height="34" loading="lazy">
+          <img src="assets/logo-netflix.png" alt="Netflix" width="131" height="35" loading="lazy">
+          <img src="assets/logo-novo.png" alt="Novo Nordisk" width="61" height="46" loading="lazy">
+          <img src="assets/logo-kia.png" alt="Kia" width="140" height="33" loading="lazy">
+          <img src="assets/logo-brio.svg" alt="BRIO" width="131" height="35" loading="lazy">
+          <img src="assets/logo-playmobil.png" alt="Playmobil" width="145" height="31" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -887,6 +913,103 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
     });
   }, { rootMargin: '200px' });
   vids.forEach(function (v) { io.observe(v); });
+})();
+
+/* Client marquee. Drifts slowly on its own and is pushed by the scroll wheel:
+   scroll velocity is added to the base speed and then decays, so the strip
+   surges with the page and settles.
+
+   The loop period is ONE set, and the set is cloned until the row is wider
+   than the viewport plus one period. Hardcoding two copies is the obvious
+   version and it is wrong: with seven logos the period came to 1366px, so on
+   any window wider than that the wrap point showed an empty gap.
+
+   Paused when off screen, disabled entirely under reduced motion, and starts
+   in .static so a visitor with no JS gets a plain centred row. */
+(function () {
+  var box = document.getElementById('clientMarquee');
+  if (!box) return;
+  var track = box.querySelector('.marquee-track');
+  var proto = track.querySelector('.mq-set');
+  if (!proto) return;
+  var rm = window.matchMedia('(prefers-reduced-motion:reduce)');
+  var period = 0, x = 0, boost = 0, running = false, raf = 0, last = 0;
+  var lastY = window.pageYOffset, BASE = 20, MAXB = 1500;
+
+  function gapPx() {
+    var g = parseFloat(getComputedStyle(track).columnGap);
+    return isNaN(g) ? 0 : g;
+  }
+  function measure() {
+    var w = proto.getBoundingClientRect().width;
+    period = w + gapPx();
+    if (period <= 0) return;
+    var need = Math.ceil((window.innerWidth + period) / period) + 1;
+    var have = track.querySelectorAll('.mq-set').length;
+    for (var i = have; i < need; i++) {
+      var c = proto.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      var im = c.querySelectorAll('img');
+      for (var j = 0; j < im.length; j++) im[j].alt = '';
+      track.appendChild(c);
+    }
+  }
+  function frame(t) {
+    if (!running) { raf = 0; return; }
+    if (!last) last = t;
+    var dt = Math.min(0.05, (t - last) / 1000);
+    last = t;
+    x -= (BASE + boost) * dt;
+    boost *= Math.pow(0.05, dt);
+    if (Math.abs(boost) < 0.5) boost = 0;
+    if (period > 0) {
+      while (x <= -period) x += period;
+      while (x > 0) x -= period;
+    }
+    track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+    raf = requestAnimationFrame(frame);
+  }
+  function start() {
+    if (!running) { running = true; last = 0; raf = requestAnimationFrame(frame); }
+  }
+  function stop() {
+    running = false;
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+  }
+  function onScroll() {
+    var y = window.pageYOffset, dy = y - lastY;
+    lastY = y;
+    boost += dy * 2.4;
+    if (boost > MAXB) boost = MAXB;
+    if (boost < -MAXB) boost = -MAXB;
+  }
+  function enable() {
+    box.classList.remove('static');
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { start(); } else { stop(); }
+      }, { rootMargin: '120px' }).observe(box);
+    } else {
+      start();
+    }
+  }
+  function disable() {
+    stop();
+    box.classList.add('static');
+    track.style.transform = '';
+  }
+
+  if (rm.matches) { disable(); } else { enable(); }
+  var onPref = function () {
+    if (rm.matches) { disable(); }
+    else if (box.classList.contains('static')) { enable(); }
+  };
+  if (rm.addEventListener) { rm.addEventListener('change', onPref); }
+  else if (rm.addListener) { rm.addListener(onPref); }
 })();
 </script>
 </body>
