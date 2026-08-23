@@ -438,16 +438,11 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
    its own panel, a real heading size, and a button that looks like the primary
    one, because "send me the deck" is a much lower-friction ask than "email us"
    and should not look like an afterthought. */
-.kit{margin-top:clamp(2.6rem,5vw,4rem);padding:clamp(1.6rem,3.5vw,2.4rem);
-  border:1px solid color-mix(in srgb,var(--on-ink) 26%,transparent);
-  background:color-mix(in srgb,var(--on-ink) 6%,transparent);max-width:46rem}
-.kit-eyebrow{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.13em;
-  text-transform:uppercase;color:color-mix(in srgb,var(--on-ink) 58%,transparent);
-  margin:0 0 .7rem}
-.kit h3{color:var(--on-ink);margin-bottom:.6rem;
-  font-size:clamp(1.35rem,2.4vw,1.85rem);letter-spacing:-.018em}
-.kit>p{color:color-mix(in srgb,var(--on-ink) 82%,transparent);margin:0 0 1.5rem;
-  font-size:1.02rem;max-width:42ch}
+/* One form, not two competing calls to action. A mailto is the highest-friction
+   control on a page: it launches an app, hands over a blank draft, and loses the
+   people who get distracted on the way. This keeps them here and captures the
+   lead even if they never type anything in the message box. */
+#kitform{margin-top:clamp(1.8rem,3.5vw,2.6rem);max-width:46rem}
 .kit-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .kit-row input{flex:1 1 12rem;min-width:0;font:inherit;font-size:1rem;
   padding:.85em 1em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
@@ -459,6 +454,17 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
   border:1px solid var(--on-ink);border-radius:0}
 .kit-row button:hover{opacity:.88}
 .kit-row button[disabled]{opacity:.55;cursor:default}
+#kitform textarea{display:block;width:100%;margin-top:.6rem;font:inherit;font-size:1rem;
+  padding:.85em 1em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
+  background:transparent;color:var(--on-ink);border-radius:0;resize:vertical}
+#kitform textarea::placeholder{color:color-mix(in srgb,var(--on-ink) 48%,transparent)}
+#kitform textarea:focus{outline:2px solid var(--on-ink);outline-offset:1px}
+.kit-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.4rem;margin-top:1rem}
+.kit-fine{margin:0;font-size:.88rem;max-width:34ch;
+  color:color-mix(in srgb,var(--on-ink) 66%,transparent)}
+.kit-alt{margin:1.6rem 0 0;font-size:.92rem;
+  color:color-mix(in srgb,var(--on-ink) 66%,transparent)}
+.kit-alt a{color:var(--on-ink)}
 .kit-msg{margin:.9rem 0 0;font-size:.9rem;min-height:1.2em;
   color:color-mix(in srgb,var(--on-ink) 82%,transparent)}
 
@@ -760,30 +766,29 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         <p class="lede">A deck, a film, a library of product visuals, or a conversation about what
           would actually work. <strong>We will tell you straight if we are not the right studio
           for it.</strong></p>
-        <a class="btn" href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a>
-
-        <div class="kit">
-          <p class="kit-eyebrow">Still thinking about it?</p>
-          <h3>Get the media kit</h3>
-          <p>Six pages: what we make, who we make it for, and what it changed. Sent to your inbox
-            straight away, no follow-up unless you ask for one.</p>
-          <form id="kitform" novalidate>
-            <div class="kit-row">
-              <label class="sr" for="kit-email">Email</label>
-              <input id="kit-email" name="email" type="email" required autocomplete="email"
-                     placeholder="you@company.com">
-              <label class="sr" for="kit-name">Name</label>
-              <input id="kit-name" name="name" type="text" autocomplete="name" placeholder="Name">
-              <label class="sr" for="kit-company">Company</label>
-              <input id="kit-company" name="company" type="text" autocomplete="organization"
-                     placeholder="Company">
-              <button type="submit">Send the kit</button>
-            </div>
-            <p class="kit-msg" role="status" aria-live="polite"></p>
-          </form>
-        </div>
+        <form id="kitform" novalidate>
+          <div class="kit-row">
+            <label class="sr" for="kit-email">Email</label>
+            <input id="kit-email" name="email" type="email" required autocomplete="email"
+                   placeholder="you@company.com">
+            <label class="sr" for="kit-name">Name</label>
+            <input id="kit-name" name="name" type="text" autocomplete="name" placeholder="Name">
+            <label class="sr" for="kit-company">Company</label>
+            <input id="kit-company" name="company" type="text" autocomplete="organization"
+                   placeholder="Company">
+          </div>
+          <label class="sr" for="kit-message">What you are working on</label>
+          <textarea id="kit-message" name="message" rows="3"
+                    placeholder="What are you working on? Optional, and it goes straight to Geoff."></textarea>
+          <div class="kit-actions">
+            <button type="submit">Send</button>
+            <p class="kit-fine">The media kit comes back straight away. Six pages on what we make
+              and what it changed.</p>
+          </div>
+          <p class="kit-msg" role="status" aria-live="polite"></p>
+        </form>
+        <p class="kit-alt">Or email <a href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a> directly.</p>
       </div>
-    </div>
   </section>
 
 </main>
@@ -835,12 +840,15 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
       body: JSON.stringify({
         email: email,
         name: form.name.value.trim(),
-        company: form.company.value.trim()
+        company: form.company.value.trim(),
+        message: form.message.value.trim()
       })
     }).then(function (r) { return r.json(); })
       .then(function (d) {
         if (d && d.ok) {
-          msg.textContent = 'On its way. Check your inbox in a minute.';
+          msg.textContent = form.message.value.trim()
+            ? 'Got it. Geoff will reply personally, and the media kit is on its way now.'
+            : 'On its way. Check your inbox in a minute.';
           form.reset();
         } else {
           throw new Error((d && d.error) || 'failed');

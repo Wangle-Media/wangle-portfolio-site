@@ -53,6 +53,7 @@ function doPost(e) {
     var email = (data.email || '').toString().trim();
     var name = (data.name || '').toString().trim();
     var company = (data.company || '').toString().trim();
+    var message = (data.message || '').toString().trim();
 
     if (!email || email.indexOf('@') < 1) {
       return jsonOutput({ ok: false, error: 'missing or malformed email' });
@@ -60,10 +61,10 @@ function doPost(e) {
 
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['timestamp', 'email', 'name', 'company']);
+      sheet.appendRow(['timestamp', 'email', 'name', 'company', 'message']);
     }
     var overCap = sendsToday(sheet) >= MAX_SENDS_PER_DAY;
-    sheet.appendRow([new Date(), email, name, company]);
+    sheet.appendRow([new Date(), email, name, company, message]);
 
     if (overCap) {
       // Record kept, mail withheld. Tell Geoff once so a real spike is visible
@@ -84,12 +85,17 @@ function doPost(e) {
     try {
       MailApp.sendEmail({
         to: email,
-        subject: 'The Wangle media kit',
         name: 'Wangle',
         replyTo: OWNER,
+        // Two different emails, because they answer two different actions. Someone
+        // who wrote a real note must not get a canned 'here is the deck' back: that
+        // reads as a robot ignoring them, which is worse than sending nothing.
+        subject: message ? 'Thanks, and the Wangle media kit' : 'The Wangle media kit',
         body:
-          'Thanks for asking.\n\n' +
-          'The Wangle media kit is here: ' + DECK_URL + '\n\n' +
+          (message
+            ? 'Thanks for getting in touch. Geoff has your note and will reply to it personally.' + '\n\n' + 'While you wait, the media kit is here: '
+            : 'Thanks for asking.\n\n' + 'The Wangle media kit is here: ') +
+          DECK_URL + '\n\n' +
           'It covers what we do for corporate communications: presentations and\n' +
           'decks, conference and brand film, product visualization, and the\n' +
           'versioning work that tells you which of them is actually landing.\n\n' +
@@ -107,11 +113,12 @@ function doPost(e) {
     try {
       MailApp.sendEmail(
         OWNER,
-        'Media kit requested: ' + email,
+        (message ? 'ENQUIRY from ' + email : 'Media kit requested: ' + email),
         'Someone requested the media kit from wangle.media.\n\n' +
           'Email   : ' + email + '\n' +
           'Name    : ' + (name || '(none)') + '\n' +
           'Company : ' + (company || '(none)') + '\n\n' +
+          (message ? 'They wrote:\n\n' + message + '\n\n' : 'No message left.\n\n') +
           'The deck has already been sent to them automatically.\n' +
           'A short personal reply now, while they are reading it, is worth more\n' +
           'than the deck is.\n\n' +
