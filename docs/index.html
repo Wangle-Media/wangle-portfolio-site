@@ -434,18 +434,28 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .contact h2{max-width:19ch}
 .contact .lede{color:color-mix(in srgb,var(--on-ink) 80%,transparent)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.kit{margin-top:clamp(2.6rem,5vw,4rem);padding-top:clamp(2rem,4vw,2.8rem);
-  border-top:1px solid color-mix(in srgb,var(--on-ink) 22%,transparent);max-width:44rem}
-.kit h3{color:var(--on-ink);margin-bottom:.6rem}
-.kit>p{color:color-mix(in srgb,var(--on-ink) 78%,transparent);margin:0 0 1.4rem;font-size:.97rem}
+/* This is the secondary conversion and it was reading as a footnote. It now has
+   its own panel, a real heading size, and a button that looks like the primary
+   one, because "send me the deck" is a much lower-friction ask than "email us"
+   and should not look like an afterthought. */
+.kit{margin-top:clamp(2.6rem,5vw,4rem);padding:clamp(1.6rem,3.5vw,2.4rem);
+  border:1px solid color-mix(in srgb,var(--on-ink) 26%,transparent);
+  background:color-mix(in srgb,var(--on-ink) 6%,transparent);max-width:46rem}
+.kit-eyebrow{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.13em;
+  text-transform:uppercase;color:color-mix(in srgb,var(--on-ink) 58%,transparent);
+  margin:0 0 .7rem}
+.kit h3{color:var(--on-ink);margin-bottom:.6rem;
+  font-size:clamp(1.35rem,2.4vw,1.85rem);letter-spacing:-.018em}
+.kit>p{color:color-mix(in srgb,var(--on-ink) 82%,transparent);margin:0 0 1.5rem;
+  font-size:1.02rem;max-width:42ch}
 .kit-row{display:flex;flex-wrap:wrap;gap:.6rem}
-.kit-row input{flex:1 1 12rem;min-width:0;font:inherit;font-size:.95rem;
-  padding:.75em .9em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
+.kit-row input{flex:1 1 12rem;min-width:0;font:inherit;font-size:1rem;
+  padding:.85em 1em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
   background:transparent;color:var(--on-ink);border-radius:0}
 .kit-row input::placeholder{color:color-mix(in srgb,var(--on-ink) 48%,transparent)}
 .kit-row input:focus{outline:2px solid var(--on-ink);outline-offset:1px}
-.kit-row button{flex:0 0 auto;font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;
-  padding:.75em 1.5em;background:var(--on-ink);color:var(--ink);
+.kit-row button{flex:0 0 auto;font:inherit;font-weight:600;font-size:1rem;cursor:pointer;
+  padding:.85em 1.8em;background:var(--on-ink);color:var(--ink);
   border:1px solid var(--on-ink);border-radius:0}
 .kit-row button:hover{opacity:.88}
 .kit-row button[disabled]{opacity:.55;cursor:default}
@@ -749,9 +759,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         <a class="btn" href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a>
 
         <div class="kit">
-          <h3>Or start with the media kit</h3>
-          <p>Six pages on what we do, who we do it for, and what it changed. We will send it
-            straight away.</p>
+          <p class="kit-eyebrow">Not ready to talk yet</p>
+          <h3>Get the media kit</h3>
+          <p>Six pages: what we make, who we make it for, and what it changed. Sent to your inbox
+            straight away, no follow-up unless you ask for one.</p>
           <form id="kitform" novalidate>
             <div class="kit-row">
               <label class="sr" for="kit-email">Email</label>
@@ -762,7 +773,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
               <label class="sr" for="kit-company">Company</label>
               <input id="kit-company" name="company" type="text" autocomplete="organization"
                      placeholder="Company">
-              <button type="submit">Send it</button>
+              <button type="submit">Send the kit</button>
             </div>
             <p class="kit-msg" role="status" aria-live="polite"></p>
           </form>
