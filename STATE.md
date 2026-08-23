@@ -1,6 +1,6 @@
 # STATE, wangle-portfolio-site
 
-**CURRENT as of 2026-08-23, 02:15.** Built in one session on 2026-08-22.
+**CURRENT as of 2026-08-23, 13:40.** Built on 2026-08-22, refined 2026-08-23.
 
 ## The site is LIVE and sendable
 
@@ -25,6 +25,24 @@ a design agency and it came out of Wangle's own capability deck.
 
 - **Clients named:** Pandora, LEGO, Netflix, Novo Nordisk, Kia, BRIO, Playmobil. All are already public
   on wangle.studio, so naming them is not a new disclosure. Nordisk Film was removed at Geoff's ask.
+  **The roster is NOT owned by this file.** It lives at `geoff-agents/knowledge/wangle-client-roster.md`
+  and is shared with thevfxsupervisor.com. **Sony was on this list wrongly and went live**: it came
+  from Barzakh, a Zee5 show, via a Zee5/Sony merger that was announced and then fell through. Removed
+  2026-08-23. The same wrong name existed in seven places across two repos, which is why there is now
+  one home for it.
+- **The client strip is real logos, not names**, monochrome, in a marquee that drifts and is pushed by
+  the scroll wheel. Sources: Wikimedia (Pandora, LEGO), Wikimedia via Geoff (Kia), vendor files
+  (Netflix, Playmobil, Novo, BRIO). Each is reduced to an ink channel and sized by sqrt(area), so a
+  square emblem does not outweigh a wordmark. **BRIO is the one mark with no official source**; it was
+  rendered and checked by eye rather than trusted.
+- **LIGHT ONLY, decided by Geoff 2026-08-23.** The dark palette shipped in the first commit and was
+  removed. Two reasons, and the first is the real one: the page gets sent to one named person by
+  someone making an introduction, and an auto dark theme means **the sender cannot know what the
+  recipient saw**. Second, light is the norm for corporate and finance-adjacent buyers; dark reads
+  creative studio, which is wangle.studio's job. A toggle was considered and rejected: it does not fix
+  the unknown, it adds a second one, and it puts a decision in front of a visitor.
+  `color-scheme:light` on `:root` is load-bearing, without it a dark-OS visitor still gets dark form
+  controls and scrollbars. The contact band and the header are dark **by design**, not by theme.
 - **Founded 2019**, confirmed by Geoff against the register.
 - **No VES mention.** Geoff: buyers here will not recognise it. "Award-winning" only.
 - **Three cases:** Pandora Capital Markets Day (lead), Pandora content supply chain, BRIO Flora.
@@ -102,10 +120,22 @@ left the studio reel showing a still forever.
 
 ## Still open
 
-1. **Real headshots.** The partner faces are 58px idents upscaled to 96. `Company/Branding/
-   ProfilePics/` holds a 2021 shoot at 5184x3456, roughly 140 unlabelled frames. Someone who can
-   identify who is who could swap in proper portraits.
-2. **An engagement-model line.** Nothing tells a referrer whether to send a 50k job or a 500k one.
+1. **An engagement-model line.** Nothing tells a referrer whether to send a 50k job or a 500k one.
    Geoff is handling this in the email instead, for now.
-3. **A combined loop for the supply-chain plate** exists from demoreel (PTM plus turtle, 2.88 MB) and
+2. **A combined loop for the supply-chain plate** exists from demoreel (PTM plus turtle, 2.88 MB) and
    is unused. Would need re-encoding to about 1 MB first.
+
+## Two cascade bugs, both silent, both found by measuring
+
+Worth reading before editing the CSS, because both looked like the change had simply not been made.
+
+1. **`.case-body > p{margin:0}` (0-1-1) beat `.case-client{margin:0 0 3rem}` (0-1-0).** The eyebrow's
+   bottom margin computed to `0px`, so two separate attempts to increase it were dead CSS and the page
+   did not move either time. Fixed by qualifying to `.case-body > p.case-client`.
+2. **`.hl` was scoped to `.case-client .hl`** when the highlight moved from the case headings onto the
+   labels. That silently unstyled the highlight on the contact heading, which stayed in the HTML as a
+   `<span class="hl">` matching no rule and rendering as plain text. The base `.hl` rule is now
+   unscoped; per-context tweaks go in their own rule.
+
+**The lesson for this file: read the computed value, do not re-guess the number.** Both were found in
+one query against `getComputedStyle`, after guessing had already failed twice.

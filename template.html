@@ -24,7 +24,8 @@
 <meta name="twitter:description" content="Presentations and decks, conference and brand film, and product visualization for global brands.">
 <meta name="twitter:image" content="https://wangle.media/assets/og-image.jpg">
 
-<meta name="theme-color" content="#14141A">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#14141A">  <!-- matches the dark banner, not a page theme -->
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,29 +180,15 @@
   --on-ink:#EFEFF3;
   --maxw:1240px;
   --pad:clamp(20px,4.5vw,56px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#101014;
-    --surface:#16161C;
-    --sunk:#1C1C24;
-    --ink:#E9E9EF;
-    --ink-2:#A7A7B2;
-    --ink-3:#8A8A95;
-    --line:#282833;
-    --line-strong:#3C3C4A;
-    --mark:#8B86FF;
-    --hl:#1E3B6B;
-    --bar-bg:#191920;
-    --bar-ink:#E9E9EF;
-    --bar-mut:#8A8A95;
-    --on-ink:#101014;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#101014; --surface:#16161C; --sunk:#1C1C24; --ink:#E9E9EF; --ink-2:#A7A7B2;
-  --ink-3:#8A8A95; --line:#282833; --line-strong:#3C3C4A; --mark:#8B86FF; --hl:#1E3B6B; --on-ink:#101014;
-  --bar-bg:#191920; --bar-ink:#E9E9EF; --bar-mut:#8A8A95;
+
+  /* This page is LIGHT ONLY, deliberately. It gets sent to one named person by
+     someone making an introduction, and an auto dark theme means the sender
+     cannot know what the recipient saw. Light is also the norm for corporate
+     and finance-adjacent buyers; dark reads creative studio, which is
+     wangle.studio's job, not this site's.
+     color-scheme:light is what makes it stick: without it a visitor whose OS
+     is dark still gets dark form controls, scrollbars and autofill. */
+  color-scheme:light;
 }
 
 *{box-sizing:border-box}
@@ -328,12 +315,6 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .marquee img{display:block;flex:none;opacity:.58;filter:grayscale(1);
   transition:opacity .25s ease}
 .marquee:hover img{opacity:.72}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .marquee img{filter:grayscale(1) invert(1);opacity:.66}
-  :root:not([data-theme="light"]) .marquee:hover img{opacity:.82}
-}
-:root[data-theme="dark"] .marquee img{filter:grayscale(1) invert(1);opacity:.66}
-:root[data-theme="dark"] .marquee:hover img{opacity:.82}
 
 /* No JS, or reduced motion: a plain centred wrapped row, no transform, no mask. */
 .marquee.static{-webkit-mask-image:none;mask-image:none}
@@ -362,13 +343,18 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
     linear-gradient(var(--line-strong),var(--line-strong)) left bottom/1px 13px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/13px 1px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/1px 13px no-repeat}
-.case-client{font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--ink-2);margin:0 0 3rem;line-height:1.75}
+/* Specificity matters here: `.case-body > p{margin:0}` below is 0-1-1 and beat
+   a plain `.case-client` at 0-1-0, so this element's bottom margin silently
+   computed to 0 and every value set on it was dead CSS. Qualified to 0-2-1. */
+.case-body > p.case-client{font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);margin:0 0 1.05rem;line-height:1.75}
 .case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
-/* The highlight sits on the case labels. Those labels now carry the PROBLEM, so
-   they are the line delivering on "three problems, solved on screen", and they
-   are small mono type that would otherwise be skipped. */
-.case-client .hl{
+/* The marker highlight. Scoped to .case-client once, when the highlight moved
+   from the case headings onto the labels, which silently unstyled the one on
+   the contact heading: a bare .hl elsewhere matched nothing and rendered as
+   plain text. Keep this selector unscoped and put any per-context tweaks in
+   their own rule. Used on: the three case labels, and the contact h2. */
+.hl{
   display:inline;
   /* OPAQUE, not a tint. With alpha, the padding boxes of adjacent lines overlap
      and the shared band renders twice as dark, which is the artefact this had. */
@@ -789,7 +775,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
     <div class="wrap sheet">
       <div>
         <p class="eyebrow">Start something</p>
-        <h2>Tell us what your room needs to understand.</h2>
+        <h2><span class="hl">Tell us what your room needs to understand.</span></h2>
         <p class="lede">A deck, a film, a library of product visuals, or a conversation about what
           would actually work. No project is too small to ask about.
           <strong>We will tell you straight if we are not the right studio for it.</strong></p>
