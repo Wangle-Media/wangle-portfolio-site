@@ -1,0 +1,74 @@
+<!-- Source for docs/assets/og-image.jpg.
+     HOW TO REGENERATE: serve this file from a directory containing the site's
+     assets/ folder, open it, scale #card so it is wider than 1200 device px in
+     the screenshot (the capture is downscaled, so rendering at 1:1 and cropping
+     upscales and blurs), move the pointer outside the card or it is captured in
+     the frame, screenshot, crop to the card and resize to exactly 1200x630.
+     It is rendered rather than drawn so the card cannot drift from the live
+     page: same tokens, same Fraunces, same logo files including the BRIO
+     vector, which no local rasterizer here can handle. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>OG card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=M+PLUS+Rounded+1c:wght@800&family=Public+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFEFF3; --surface:#E6E6EC; --ink:#16161D; --ink-2:#55555F; --ink-3:#6E6E79;
+  --line:#CFCFD8; --mark:#4A42E0; --bar-bg:#14141A; --bar-ink:#EFEFF3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#888}
+#card{
+  position:absolute;top:0;left:0;width:1200px;height:630px;overflow:hidden;
+  background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",-apple-system,Helvetica,Arial,sans-serif;
+  display:flex;flex-direction:column;
+}
+.bar{height:96px;flex:none;background:var(--bar-bg);color:var(--bar-ink);
+  display:flex;align-items:center;padding:0 66px}
+.brand{display:flex;align-items:baseline;gap:0;text-decoration:none;color:var(--bar-ink);
+  font-family:"M PLUS Rounded 1c","Familjen Grotesk",sans-serif;font-weight:800;
+  font-size:2rem;letter-spacing:-.01em}
+.brand img{width:auto;height:1.12cap;display:block;flex:none;position:relative;top:.035em;margin-right:.1em}
+.brand span{letter-spacing:.045em}
+
+.body{flex:1;padding:0 66px 0;display:flex;flex-direction:column}
+.text{margin:auto 0}
+.eyebrow{font-family:"DM Mono",ui-monospace,monospace;font-weight:400;font-size:15px;
+  letter-spacing:.19em;text-transform:uppercase;color:var(--ink-3);
+  display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--mark);flex:none}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:84px;line-height:1.02;
+  letter-spacing:-.021em;color:var(--ink);max-width:17ch}
+.sub{margin-top:26px;font-size:26px;line-height:1.4;color:var(--ink-2);max-width:52ch;font-weight:400}
+
+.strip{margin-top:auto;border-top:1px solid var(--line);background:var(--surface);
+  margin-left:-66px;margin-right:-66px;padding:22px 66px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:30px}
+.strip img{display:block;flex:none;opacity:.56;filter:grayscale(1)}
+</style></head>
+<body>
+<div id="card">
+  <div class="bar">
+    <span class="brand"><img src="assets/wangle-wordmark.png" alt="" width="360" height="57"><span>.MEDIA</span></span>
+  </div>
+  <div class="body">
+    <div class="text">
+      <p class="eyebrow">Corporate communications</p>
+      <h1>Some rooms you only get once.</h1>
+      <p class="sub">Board decks, investor presentations, and the films that open them.</p>
+    </div>
+    <div class="strip">
+      <img src="assets/logo-pandora.png"   width="128" height="26" alt="">
+      <img src="assets/logo-lego.png"      width="30"  height="30" alt="">
+      <img src="assets/logo-netflix.png"   width="111" height="30" alt="">
+      <img src="assets/logo-novo.png"      width="49"  height="37" alt="">
+      <img src="assets/logo-kia.png"       width="118" height="28" alt="">
+      <img src="assets/logo-brio.svg"      width="111" height="30" alt="">
+      <img src="assets/logo-playmobil.png" width="123" height="26" alt="">
+    </div>
+  </div>
+</div>
+</body></html>
