@@ -244,7 +244,7 @@ h3{font-size:clamp(1.14rem,1.55vw,1.34rem);letter-spacing:-.012em}
   font-variant-numeric:tabular-nums;
 }
 .eyebrow{
-  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);
   margin:0 0 1.5rem;display:flex;align-items:center;gap:.7rem;
 }
 .eyebrow::before{content:"";width:18px;height:1px;background:var(--mark);flex:none}
@@ -337,10 +337,13 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
     linear-gradient(var(--line-strong),var(--line-strong)) left bottom/1px 13px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/13px 1px no-repeat,
     linear-gradient(var(--line-strong),var(--line-strong)) right bottom/1px 13px no-repeat}
-.case-client{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--mark);margin:0 0 .9rem}
+.case-client{font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-2);margin:0 0 2.35rem;line-height:1.75}
 .case-body h3{margin-bottom:.9rem;font-size:clamp(1.28rem,2.1vw,1.72rem)}
-.hl{
+/* The highlight sits on the case labels. Those labels now carry the PROBLEM, so
+   they are the line delivering on "three problems, solved on screen", and they
+   are small mono type that would otherwise be skipped. */
+.case-client .hl{
   display:inline;
   /* OPAQUE, not a tint. With alpha, the padding boxes of adjacent lines overlap
      and the shared band renders twice as dark, which is the artefact this had. */
@@ -386,15 +389,9 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .studio-copy p{color:var(--ink-2);margin:0 0 1.1rem;max-width:60ch}
 .xlink{margin:1.6rem 0 0;font-size:.95rem}
 .xlink a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
-/* shown at the file's own 480px, so it is never upscaled */
-.studio-reel{display:block;width:100%;max-width:480px;margin:1.8rem 0 0;
-  text-decoration:none}
-.studio-reel video{display:block;width:100%;height:auto;aspect-ratio:16/9;
-  object-fit:cover;border:1px solid var(--line-strong);background:var(--sunk)}
-.studio-reel span{display:block;margin-top:.6rem;font-size:.9rem;color:var(--mark);
-  text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1px}
-.studio-reel:hover video{border-color:var(--mark)}
-.studio-reel:hover span{color:var(--ink)}
+.studio-reel{margin:1.6rem 0 0;font-size:.95rem}
+.studio-reel a{color:var(--mark);text-underline-offset:.22em;text-decoration-thickness:1px}
+.studio-reel a:hover{color:var(--ink)}
 .facts{margin:2rem 0 0}
 .facts div{border-top:1px solid var(--line);padding-block:.7rem;
   display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1rem;font-size:.93rem}
@@ -523,10 +520,8 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
       <div>
         <p class="eyebrow">Corporate communications</p>
         <h1>Some rooms <span class="keep">you only get once.</span></h1>
-        <p class="lede">The deck the board still remembers a week later. The film that opens the
-          conference. The product images every market runs on. We make the communications a brand
-          needs to get right the first time, then we version them, test them, and keep the ones that
-          work.</p>
+        <p class="lede">Board decks, investor presentations, and the films that open them.<br>
+          Made by the studio behind Pandora's Capital Markets Day.</p>
         <div class="actions">
           <a class="btn" href="#contact">Start a project</a>
           <a class="btn ghost" href="#work">See the work</a>
@@ -557,8 +552,8 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="case-grid">
             <div class="plate wide"><video data-src="assets/loop-presentation.mp4" poster="assets/case-cmd.jpg" width="1280" height="720" autoplay muted loop playsinline preload="none" aria-label="A slide from a Pandora Capital Markets Day presentation"></video></div>
             <div class="case-body">
-              <p class="case-client">Pandora, Capital Markets Day</p>
-              <h3><span class="hl">The presentation a listed company puts in front of its investors</span></h3>
+              <p class="case-client"><span class="hl">The room that moves the share price</span></p>
+              <h3>Pandora's Capital Markets Day, built to survive the analysts</h3>
               <p>Capital Markets Day is where a public company sets out its strategy to analysts,
                 press and shareholders. Every slide is read by people paid to be sceptical. We have
                 built Pandora's across multiple years: the narrative, the slide design, the data
@@ -583,8 +578,8 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="case-grid">
             <div class="plate"><video data-src="assets/loop-turtle.mp4" poster="assets/case-supplychain.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A Pandora sea turtle charm rendered in 3D"></video></div>
             <div class="case-body">
-              <p class="case-client">Pandora</p>
-              <h3><span class="hl">From a photo library to a content supply chain</span></h3>
+              <p class="case-client"><span class="hl">Photography could not keep up</span></p>
+              <h3>One model, every image Pandora needs, in every market</h3>
               <p>Legacy production could not keep pace with a global rebrand. We built a single
                 source of truth: a digital twin of the product range, accurate enough that one
                 modelled piece produces every image, film and configurator view the business needs,
@@ -608,8 +603,8 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="case-grid">
             <div class="plate"><video data-src="assets/loop-brio.mp4" poster="assets/case-brio.jpg" width="1280" height="960" autoplay muted loop playsinline preload="none" aria-label="A forest scene from the BRIO Flora animated series"></video></div>
             <div class="case-body">
-              <p class="case-client">BRIO</p>
-              <h3><span class="hl">Launching a new world without losing the old one</span></h3>
+              <p class="case-client"><span class="hl">A new line, a 140-year-old brand</span></p>
+              <h3>BRIO launched a new world without risking the old one</h3>
               <p>A Swedish house founded in 1884, pivoting from the wooden railway it is known for
                 to a new modular line at a premium price. The product mechanics needed explaining
                 and the heritage needed protecting, at the same time.</p>
@@ -641,9 +636,9 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="svc">
             <span class="svc-tag">Decks</span>
             <h3>Presentation and deck design</h3>
-            <p>Board decks, investor material, sales enablement and keynote support. Structure
-              first, then the craft that makes an argument easy to follow at speed. Built in your
-              template, or a better one.</p>
+            <p>Board decks, investor material, the pitch that decides a raise or a sale.
+              Structure first, then the craft that makes an argument easy to follow at speed.
+              Built in your template, or a better one.</p>
           </div>
           <div class="svc">
             <span class="svc-tag">Film</span>
@@ -684,18 +679,14 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         <div>
           <p class="eyebrow">The studio</p>
           <h2>A production company, not a freelancer with a template.</h2>
-          <a class="studio-reel" href="https://www.wangle.studio"
-             aria-label="Watch the full showreel at wangle.studio">
-            <video data-src="assets/loop-reel.mp4" poster="assets/reel-poster.jpg"
-                   width="480" height="270" autoplay muted loop playsinline
-                   preload="none" aria-hidden="true"></video>
-            <span>Watch the reel at wangle.studio</span>
-          </a>
+          <p class="studio-reel"><a href="https://www.wangle.studio">Watch the reel at
+            wangle.studio</a></p>
         </div>
         <div class="studio-copy">
-          <p>Wangle Media is a Scandinavian studio in Copenhagen and Stockholm. We work with global
-            brands that need communication assets made properly and repeatedly, not once: the
-            annual conference, the launch, the product library every market pulls from.</p>
+          <p>Wangle Media is a Scandinavian studio in Copenhagen and Stockholm. We make the
+            things a company is judged on: the board deck, the investor presentation, the film
+            that opens the conference. Some clients are global brands. Some are one person with
+            one meeting that decides the year.</p>
           <p><strong>What makes that work is infrastructure rather than heroics.</strong> Assets are built modular,
             so localising for a new market or generating a new variant is a small job instead of a
             new project. That is why we can hold quality across hundreds of deliverables and still
@@ -704,7 +695,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             moving-image work at wangle.studio</a></p>
           <dl class="facts">
             <div><dt>Based in</dt><dd>Copenhagen and Stockholm</dd></div>
-            <div><dt>Clients</dt><dd>Global brands in retail, pharma, automotive and entertainment</dd></div>
+            <div><dt>Clients</dt><dd>From listed companies to founder-led businesses</dd></div>
             <div><dt>Built for</dt><dd>Volume, localisation and fast versioning</dd></div>
           </dl>
         </div>
@@ -767,10 +758,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
     <div class="wrap sheet">
       <div>
         <p class="eyebrow">Start something</p>
-        <h2><span class="hl">Tell us what your room needs to understand.</span></h2>
+        <h2>Tell us what your room needs to understand.</h2>
         <p class="lede">A deck, a film, a library of product visuals, or a conversation about what
-          would actually work. <strong>We will tell you straight if we are not the right studio
-          for it.</strong></p>
+          would actually work. No project is too small to ask about.
+          <strong>We will tell you straight if we are not the right studio for it.</strong></p>
         <form id="kitform" novalidate>
           <div class="kit-row">
             <label class="sr" for="kit-email">Email</label>
