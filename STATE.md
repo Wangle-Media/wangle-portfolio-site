@@ -46,10 +46,23 @@ did them.
 Kept: BRIO's 87% retention and Toy of the Year 2025. Geoff ruled the 87% is fine and defensible.
 **The 22% figure is still in the media kit PDF.** If that deck is ever revised, fix it there too.
 
-## Media kit form
+## The contact form
 
-Live at the foot of the page. Captures to a Sheet, mails the deck from Drive immediately, notifies
-Geoff so he can reply while they are reading. `MAX_SENDS_PER_DAY = 40` caps sending, never recording.
+**One form, not a mailto plus a separate kit request.** A mailto is the highest-friction control on
+a page: it launches an app, hands over a blank draft, and loses whoever gets distracted. It is now a
+plain text link below the form.
+
+Email, name, company, and an **optional message**. Leave it blank and you get the deck; write in it
+and Geoff gets an enquiry. **No opt-out checkbox on purpose:** every checkbox is a decision, and
+decisions are the friction being removed.
+
+**The reply adapts, and that is what makes the no-checkbox choice safe.** Someone who wrote a note
+gets "Geoff has your note and will reply personally" with the deck second, and the owner
+notification is subject-lined ENQUIRY and leads with what they wrote. A canned "here is the deck" in
+answer to a real message reads as a robot ignoring them.
+
+`MAX_SENDS_PER_DAY = 40` caps sending, never recording. Both paths verified end to end against the
+sheet on 2026-08-23.
 
 - Script: `mediakit.gs`, deployed endpoint `AKfycbxOxtQrLY9...`, verified writing to the
   "Wangle media kit requests" sheet.
@@ -73,6 +86,19 @@ visitor on save-data or reduced motion, who keep the poster.
 
 **The observer must select `video[data-src]`, not `.plate video[data-src]`.** Scoping it to plates
 left the studio reel showing a still forever.
+
+## Open decisions, parked deliberately
+
+1. **Does the hero h1 keep the logo face?** "Some rooms you only get once." is currently set in
+   M PLUS Rounded 1c 800, the lockup face; every other heading is Familjen Grotesk. Geoff is
+   sleeping on it, 2026-08-23.
+   - **For:** ties the hero to the identity, and at display size the roundness reads confident.
+   - **Against:** it is a logo face doing headline work, it reads soft for a corporate buyer, and
+     the dark banner now establishes the identity at the top of the page anyway, so the h1 no
+     longer needs to.
+   - Reverting is one line: drop the `.hero h1` font-family override.
+2. **Type `message` into cell E1** of the media kit sheet. The header row predates that column, and
+   the script only writes headers into a completely empty sheet. Cosmetic; the data lands correctly.
 
 ## Still open
 
