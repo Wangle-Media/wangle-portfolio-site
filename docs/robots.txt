@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI crawlers: this is a marketing site and being
+# summarised accurately is the point.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://wangle.media/sitemap.xml

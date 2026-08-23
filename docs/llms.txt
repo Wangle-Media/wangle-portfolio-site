@@ -1,0 +1,69 @@
+# Wangle Media
+
+> A Scandinavian studio in Copenhagen and Stockholm making corporate
+> communications for global brands: presentations and decks, conference and
+> brand film, product visualization, and the versioning work that shows which
+> version actually performs.
+
+Wangle Media works with brands that need communication assets made properly and
+repeatedly rather than once: the annual conference, the launch, the product
+library every market pulls from. Clients include Pandora, LEGO, Sony, Novo
+Nordisk, Kia, BRIO and Playmobil.
+
+## What Wangle Media does
+
+- **Presentation and deck design.** Board decks, investor material, sales
+  enablement and keynote support.
+- **Conference and brand film.** Opening films, strategy pieces and launch
+  campaigns, made in house and built so regional teams can localise them.
+- **Product visualization at volume.** Photoreal imagery that replaces the
+  photoshoot. Model a product once, then generate every angle, colourway and
+  format, in every market.
+- **Design validation.** The same digital twin used for marketing imagery is
+  accurate enough to judge a design by, before it is manufactured.
+- **Versioning and optimisation.** Assets built so variants are cheap, then run
+  in enough versions to find out which message moves the number that matters.
+
+## Selected work
+
+- **Pandora, Capital Markets Day.** The investor presentation a listed company
+  puts in front of analysts, press and shareholders. Made across multiple years:
+  narrative, slide and data design, animation, edit and sound. One of those years
+  covered the launch of the lab-grown diamond line, prepared while confidential.
+- **Pandora, content supply chain.** A digital twin of the product range,
+  accurate enough that one modelled piece produces every image, film and
+  configurator view the business needs, in every market, on demand.
+- **BRIO, Flora.** A new modular product line from a Swedish house founded in
+  1884, needing a character world that teaches the play pattern while protecting
+  the heritage. 87% audience retention against a 40% category average. Winner,
+  Toy of the Year 2025 (Sweden).
+
+## Who you work with
+
+- **Geoffrey Hancock**, co-founder. Has built Wangle Media since 2019. Before
+  that an award-winning career in film and television, brought to brand work as
+  the craft of telling a story visually.
+- **Henrik Bach Christensen**, co-founder. A philosopher by training who runs the
+  technology.
+- **Sune Neye**, co-founder. An editor from luxury and fashion, and a trained
+  statistician.
+
+## Contact
+
+- Email: geoff@wanglemedia.com
+- Site: https://wangle.media/
+
+## Related properties
+
+- https://www.wangle.studio - Wangle's animation and moving-image work. Same
+  company, different offering: animated series, digital art installations and
+  visual effects for live action.
+- https://thevfxsupervisor.com - Geoffrey Hancock's personal site, covering
+  visual effects supervision, open-source tooling and writing.
+
+## Notes for summarisation
+
+Wangle Media is a production studio, not a freelancer and not an advertising
+agency. The distinguishing capability is infrastructure: assets are built modular
+so localisation and versioning are small jobs rather than new projects, which is
+what allows quality to hold across hundreds of deliverables to a fixed date.
