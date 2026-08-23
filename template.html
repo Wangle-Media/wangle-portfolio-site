@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Poppins:wght@600&family=Public+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=M+PLUS+Rounded+1c:wght@800&family=Public+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* Wangle, corporate communications.
    Visual system: a drafting sheet. Wangle's logo is a CAD line drawing and the pitch is that real
@@ -116,7 +116,7 @@ header.site{position:sticky;top:0;z-index:20;background:var(--bar-bg);
    supplies .MEDIA. gap is 0 on purpose, a gap here reads as two elements rather
    than one domain. */
 .brand{display:flex;align-items:baseline;gap:0;text-decoration:none;color:var(--bar-ink);
-  font-family:"Poppins","Familjen Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+  font-family:"M PLUS Rounded 1c","Familjen Grotesk",sans-serif;font-weight:800;font-size:1.5rem;
   letter-spacing:-.01em}
 .brand .wordmark{
   /* .68em matches the measured cap height of .MEDIA at this size (14px at 20.5px
@@ -129,19 +129,19 @@ header.site{position:sticky;top:0;z-index:20;background:var(--bar-bg);
      image height IS its cap height. 1cap resolves to the type's cap height and
      keeps matching if the size changes; the em value is the fallback and was
      measured in the browser at this size. */
-  width:auto;height:.655em;height:1cap;
+  width:auto;height:.72em;height:1.12cap;
   display:block;flex:none;
   /* baseline alignment puts the image's BOTTOM on the text baseline, and the
      residual drift grows with font-size, so it needs a nudge in em rather than
      px. Measured at 1.5rem: 1.36px low before this, sub-pixel after. */
-  position:relative;top:.03em;
-  margin-right:.05em;
+  position:relative;top:.035em;
+  margin-right:.1em;   /* air around the dot, so it separates the two words */
 }
 /* the wordmark is a heavy geometric sans, so the type beside it is Poppins, not
    the body face: Familjen Grotesk read as unrelated letterforms next to a logo.
    The family sits on .brand rather than here so the image's 1cap resolves against
    the SAME font the text uses. */
-.brand span{letter-spacing:-.005em}
+.brand span{letter-spacing:.045em}
 @media (max-width:420px){.brand{font-size:1.2rem}}
 nav.top{display:flex;align-items:center;gap:clamp(.9rem,2.2vw,2.1rem)}
 nav.top a{text-decoration:none;color:var(--bar-mut);font-size:.9rem}
@@ -315,7 +315,7 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 .foot{display:flex;flex-wrap:wrap;gap:.9rem 2rem;align-items:center;justify-content:space-between}
 .foot-brand{display:flex;align-items:center;gap:.55rem;
-  font-family:"Poppins","Familjen Grotesk",sans-serif;font-weight:600;letter-spacing:-.005em}
+  font-family:"M PLUS Rounded 1c","Familjen Grotesk",sans-serif;font-weight:800;letter-spacing:.02em}
 .foot-brand .wlogo{width:32px;height:23px}
 .foot-note{margin:0;font-size:.85rem;color:var(--ink-3)}
 .foot-note a{color:var(--ink-2)}
@@ -521,7 +521,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           </a>
         </div>
         <div class="studio-copy">
-          <p>Wangle is a Scandinavian studio in Copenhagen and Stockholm. We work with global
+          <p>Wangle Media is a Scandinavian studio in Copenhagen and Stockholm. We work with global
             brands that need communication assets made properly and repeatedly, not once: the
             annual conference, the launch, the product library every market pulls from.</p>
           <p><strong>What makes that work is infrastructure rather than heroics.</strong> Assets are built modular,
@@ -559,7 +559,7 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
           <div class="lead-person">
             <h3>Geoffrey Hancock</h3>
             <p class="role">Co-founder</p>
-            <p>Has built Wangle since 2019 into the studio brands call when something has to be
+            <p>Has built Wangle Media since 2019 into the studio brands call when something has to be
               right the first time: the conference film, the launch, the product library that every
               market runs on.</p>
             <p>Before that, an award-winning career in film and television. He brings that
