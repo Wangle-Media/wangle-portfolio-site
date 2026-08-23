@@ -105,17 +105,37 @@ visitor on save-data or reduced motion, who keep the poster.
 **The observer must select `video[data-src]`, not `.plate video[data-src]`.** Scoping it to plates
 left the studio reel showing a still forever.
 
+## The heading face: SETTLED 2026-08-23, and it closes the parked h1 question
+
+**All headings are Fraunces**, a serif. This replaced both Familjen Grotesk on h2/h3 and the
+M PLUS Rounded 1c hero h1, so the "does the h1 keep the logo face" question is now answered: no.
+
+**It was chosen against an audience, not a mood.** The referral route runs through a wealth manager
+(see the roster note and `geoff-agents/knowledge/copy-formulas.md`), so the page is read by people
+habituated to an editorial serif register. A geometric sans read contemporary-creative, which is
+wangle.studio's job.
+
+**Not the referrer's own fonts.** Geoff asked whether matching Sagium's typography (Tiempos Fine +
+Avenir Next) would act as a recognition cue. It would not: typeface recognition across brands is a
+designer's skill, the authority in a referral is the introduction itself, and the people who WOULD
+notice are the two who see their own brand daily, to whom it reads as imitation. A studio that sells
+design cannot look derivative in front of the people vouching for it. Both faces are also paid
+licences.
+
+**Neutrals stay COOL.** Warm variants were built and rejected by Geoff: the palette is derived from
+the brand mark, and warm-cream-plus-serif is a very well-worn look. A first warm attempt also read
+green, because `G-B` exceeded `R-G`; if warmth is ever revisited, **make R lead G by more than G
+leads B** or it comes out olive.
+
+**Payload:** the weight axis is pinned (`opsz,wght@9..144,600`) and the optical-size axis kept. That
+is 35 KB for the latin subset instead of 67 KB for a 400..700 range, and opsz is the part that earns
+its place, refining the face between the 70px hero and the 27px case headings.
+
+**The lockup and footer wordmark stay M PLUS Rounded 1c.** Those are identity, not headings.
+
 ## Open decisions, parked deliberately
 
-1. **Does the hero h1 keep the logo face?** "Some rooms you only get once." is currently set in
-   M PLUS Rounded 1c 800, the lockup face; every other heading is Familjen Grotesk. Geoff is
-   sleeping on it, 2026-08-23.
-   - **For:** ties the hero to the identity, and at display size the roundness reads confident.
-   - **Against:** it is a logo face doing headline work, it reads soft for a corporate buyer, and
-     the dark banner now establishes the identity at the top of the page anyway, so the h1 no
-     longer needs to.
-   - Reverting is one line: drop the `.hero h1` font-family override.
-2. **Type `message` into cell E1** of the media kit sheet. The header row predates that column, and
+1. **Type `message` into cell E1** of the media kit sheet. The header row predates that column, and
    the script only writes headers into a completely empty sheet. Cosmetic; the data lands correctly.
 
 ## Still open
