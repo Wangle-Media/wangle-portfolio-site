@@ -432,7 +432,7 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .contact{background:var(--ink);color:var(--on-ink);padding-block:clamp(3.5rem,8vw,6.5rem)}
 .contact .eyebrow{color:color-mix(in srgb,var(--on-ink) 60%,transparent)}
 .contact h2{max-width:none;line-height:1.32}
-.contact .lede{color:color-mix(in srgb,var(--on-ink) 80%,transparent)}
+.contact .lede{color:color-mix(in srgb,var(--on-ink) 80%,transparent);max-width:86ch}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* This is the secondary conversion and it was reading as a footnote. It now has
    its own panel, a real heading size, and a button that looks like the primary
@@ -453,18 +453,18 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
    ground: 5.96 against the section, 6.28 for the label. Red was the other
    candidate and loses on both, besides being the only warm colour on the site
    and reading as a warning on a button. */
-.kit-row button{flex:0 0 auto;font:inherit;font-weight:700;font-size:1.14rem;cursor:pointer;
-  padding:.9em 2.4em;letter-spacing:-.005em;background:#8B86FF;color:#101014;
+#kitform button{flex:0 0 auto;font:inherit;font-weight:700;font-size:1.3rem;cursor:pointer;
+  padding:.95em 2.8em;letter-spacing:-.005em;background:#8B86FF;color:#101014;
   border:1px solid #8B86FF;border-radius:0;transition:background .15s ease}
-.kit-row button:hover{background:#A29DFF;border-color:#A29DFF}
-.kit-row button[disabled]{opacity:.55;cursor:default}
+#kitform button:hover{background:#A29DFF;border-color:#A29DFF}
+#kitform button[disabled]{opacity:.55;cursor:default}
 #kitform textarea{display:block;width:100%;margin-top:.6rem;font:inherit;font-size:1rem;
   padding:.85em 1em;border:1px solid color-mix(in srgb,var(--on-ink) 30%,transparent);
   background:transparent;color:var(--on-ink);border-radius:0;resize:vertical}
 #kitform textarea::placeholder{color:color-mix(in srgb,var(--on-ink) 48%,transparent)}
 #kitform textarea:focus{outline:2px solid var(--on-ink);outline-offset:1px}
 .kit-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem;margin-top:1.3rem}
-.kit-fine{margin:0;font-size:1rem;max-width:36ch;line-height:1.5;
+.kit-fine{margin:0;font-size:1.02rem;line-height:1.5;flex:1 1 22rem;
   color:color-mix(in srgb,var(--on-ink) 80%,transparent)}
 .kit-alt{margin:1.6rem 0 0;font-size:.92rem;
   color:color-mix(in srgb,var(--on-ink) 66%,transparent)}
