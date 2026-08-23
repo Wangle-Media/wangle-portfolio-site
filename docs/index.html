@@ -104,8 +104,33 @@ strong{font-weight:700;color:var(--ink)}
 
 header.site{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:66px;padding-block:.75rem}
-.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;
-  font-family:"Familjen Grotesk",sans-serif;font-weight:600;letter-spacing:-.015em;font-size:1.06rem}
+/* One lockup reading WANGLE.MEDIA: the wordmark supplies WANGLE, the type
+   supplies .MEDIA. gap is 0 on purpose, a gap here reads as two elements rather
+   than one domain. */
+.brand{display:flex;align-items:baseline;gap:0;text-decoration:none;
+  font-family:"Familjen Grotesk",sans-serif;font-weight:600;font-size:1.5rem;
+  letter-spacing:-.01em;color:var(--ink)}
+.brand .wordmark{
+  /* .68em matches the measured cap height of .MEDIA at this size (14px at 20.5px
+     type), so the two read as one word rather than as an image beside a word.
+     Measured in the browser, not guessed: .78em rendered 16px against 14px caps. */
+  /* Geoff's spec is that the mark and the type are the same height, which means
+     matching CAP HEIGHT, not font-size: font-size is the em box and cap height is
+     only about two thirds of it, so height:1em renders the mark visibly too tall.
+     The wordmark PNG is trimmed to the glyphs and WANGLE has no descenders, so the
+     image height IS its cap height. 1cap resolves to the type's cap height and
+     keeps matching if the size changes; the em value is the fallback and was
+     measured in the browser at this size. */
+  width:auto;height:.655em;height:1cap;
+  display:block;flex:none;
+  /* baseline alignment puts the image's BOTTOM on the text baseline, and the
+     residual drift grows with font-size, so it needs a nudge in em rather than
+     px. Measured at 1.5rem: 1.36px low before this, sub-pixel after. */
+  position:relative;top:-.055em;
+  margin-right:.05em;
+}
+.brand span{letter-spacing:.01em;color:var(--ink-2);font-weight:500}
+@media (max-width:420px){.brand{font-size:1.2rem}}
 nav.top{display:flex;align-items:center;gap:clamp(.9rem,2.2vw,2.1rem)}
 nav.top a{text-decoration:none;color:var(--ink-2);font-size:.9rem}
 nav.top a:hover{color:var(--ink)}
@@ -292,7 +317,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
 
 <header class="site">
   <div class="wrap bar">
-    <a class="brand" href="#main"><i class="wlogo"></i><span>Wangle</span></a>
+    <a class="brand" href="#main" aria-label="Wangle.media, back to top">
+      <img class="wordmark" src="assets/wangle-wordmark.png" alt="" width="360" height="57">
+      <span aria-hidden="true">.MEDIA</span>
+    </a>
     <nav class="top" aria-label="Primary">
       <a href="#work">Work</a>
       <a href="#services">What we do</a>
