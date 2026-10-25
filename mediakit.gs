@@ -31,6 +31,9 @@ var OWNER = 'geoff@wanglemedia.com';
 // day is still captured and Geoff can follow it up by hand.
 var MAX_SENDS_PER_DAY = 40;
 
+// Submissions faster than this are treated as bots. See doPost.
+var MIN_FILL_MS = 3000;
+
 function sendsToday(sheet) {
   var last = sheet.getLastRow();
   if (last < 2) return 0;
@@ -54,6 +57,14 @@ function doPost(e) {
     var name = (data.name || '').toString().trim();
     var company = (data.company || '').toString().trim();
     var message = (data.message || '').toString().trim();
+
+    // Spam check. Humans never see url_hp, and nobody reads the form and fills
+    // it in under three seconds. Answer "ok" so a bot learns nothing, but record
+    // and send nothing. A request with no elapsed value did not come from the page.
+    var elapsed = Number(data.elapsed);
+    if (data.url_hp || !(elapsed >= MIN_FILL_MS)) {
+      return jsonOutput({ ok: true });
+    }
 
     if (!email || email.indexOf('@') < 1) {
       return jsonOutput({ ok: false, error: 'missing or malformed email' });

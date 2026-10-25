@@ -496,6 +496,7 @@ nav.top .cta{font-weight:600;color:var(--bar-ink);border-bottom:2px solid #8B86F
 .kit-alt{margin:1.6rem 0 0;font-size:.92rem;
   color:color-mix(in srgb,var(--on-ink) 66%,transparent)}
 .kit-alt a{color:var(--on-ink)}
+.kit-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .kit-msg{margin:.9rem 0 0;font-size:.9rem;min-height:1.2em;
   color:color-mix(in srgb,var(--on-ink) 82%,transparent)}
 
@@ -819,6 +820,10 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
             <p class="kit-fine">The media kit comes back straight away. Six pages on what we make
               and what it changed.</p>
           </div>
+          <div class="kit-hp" aria-hidden="true">
+            <label for="kit-url">Leave this empty</label>
+            <input id="kit-url" name="url_hp" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <p class="kit-msg" role="status" aria-live="polite"></p>
         </form>
         <p class="kit-alt">Or email <a href="mailto:geoff@wanglemedia.com?subject=Project%20enquiry">geoff@wanglemedia.com</a> directly.</p>
@@ -851,6 +856,9 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
   if (!form) return;
   var msg = form.querySelector('.kit-msg');
   var btn = form.querySelector('button');
+  // Spam check, deliberately simple: bots fill the hidden field or submit
+  // instantly. mediakit.gs repeats both checks, since a bot can skip this page.
+  var loadedAt = Date.now();
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var email = form.email.value.trim();
@@ -875,7 +883,9 @@ footer.site-footer{padding-block:2.4rem;border-top:1px solid var(--line)}
         email: email,
         name: form.name.value.trim(),
         company: form.company.value.trim(),
-        message: form.message.value.trim()
+        message: form.message.value.trim(),
+        url_hp: form.url_hp.value,
+        elapsed: Date.now() - loadedAt
       })
     }).then(function (r) { return r.json(); })
       .then(function (d) {
